@@ -48,6 +48,21 @@ public class User implements Serializable {
     @Column(name = "rate_avg")
     private double rateAvg;
 
+    public User(String email, String name, String lastname, String password, String education, int schoolId, String department, String specialization, double rateAvg) {
+        this.email = email;
+        this.name = name;
+        this.lastname = lastname;
+        this.password = password;
+        this.education = education;
+        this.schoolId = schoolId;
+        this.department = department;
+        this.specialization = specialization;
+        this.rateAvg = rateAvg;
+    }
+
+    public User() {
+    }
+
     public int getId() {
         return id;
     }
@@ -128,4 +143,19 @@ public class User implements Serializable {
         this.rateAvg = rateAvg;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", password='" + password + '\'' +
+                ", education='" + education + '\'' +
+                ", schoolId=" + schoolId +
+                ", department='" + department + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", rateAvg=" + rateAvg +
+                '}';
+    }
 }
