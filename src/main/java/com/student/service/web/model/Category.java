@@ -10,11 +10,11 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 
-    @NotBlank
+
     @Column(name = "parent_category_id")
     private int parentCategoryId;
 

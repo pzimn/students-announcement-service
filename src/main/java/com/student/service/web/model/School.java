@@ -10,7 +10,7 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 public class School {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 

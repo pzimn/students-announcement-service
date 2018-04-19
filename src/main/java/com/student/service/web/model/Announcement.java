@@ -4,21 +4,22 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "announcement")
 @EntityListeners(AuditingEntityListener.class)
 public class Announcement {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 
-    @NotBlank
+
     @Column(name = "user_id")
     private int userId;
 
-    @NotBlank
+
     @Column(name = "category_id")
     private int categoryId;
 
@@ -32,7 +33,7 @@ public class Announcement {
 
     @NotBlank
     @Column
-    private double price;
+    private BigDecimal price;
 
     public int getId() {
         return id;
@@ -74,11 +75,11 @@ public class Announcement {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

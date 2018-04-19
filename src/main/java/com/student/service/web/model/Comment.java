@@ -10,15 +10,15 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 
-    @NotBlank
+
     @Column(name = "author_id")
     private int authorId;
 
-    @NotBlank
+
     @Column(name = "target_id")
     private int targetId;
 

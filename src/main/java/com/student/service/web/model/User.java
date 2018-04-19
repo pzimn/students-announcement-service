@@ -5,13 +5,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "users")
+//@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
 @EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 
@@ -35,7 +38,7 @@ public class User implements Serializable {
     @Column
     private String education;
 
-    @NotBlank
+
     @Column(name = "school_id")
     private int schoolId;
 
@@ -46,9 +49,9 @@ public class User implements Serializable {
     private String specialization;
 
     @Column(name = "rate_avg")
-    private double rateAvg;
+    private BigDecimal rateAvg;
 
-    public User(String email, String name, String lastname, String password, String education, int schoolId, String department, String specialization, double rateAvg) {
+    public User(String email, String name, String lastname, String password, String education, int schoolId, String department, String specialization, BigDecimal rateAvg) {
         this.email = email;
         this.name = name;
         this.lastname = lastname;
@@ -135,11 +138,11 @@ public class User implements Serializable {
         this.specialization = specialization;
     }
 
-    public double getRateAvg() {
+    public BigDecimal getRateAvg() {
         return rateAvg;
     }
 
-    public void setRateAvg(double rateAvg) {
+    public void setRateAvg(BigDecimal rateAvg) {
         this.rateAvg = rateAvg;
     }
 

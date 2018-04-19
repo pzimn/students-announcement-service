@@ -4,27 +4,29 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "message")
 @EntityListeners(AuditingEntityListener.class)
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 
-    @NotBlank
+
     @Column(name = "sender_id")
     private int senderId;
 
-    @NotBlank
+
     @Column(name = "recipient_id")
     private int recipientId;
 
     @NotBlank
     @Column
-    private int timestamp;
+    private Timestamp timestamp;
 
     @NotBlank
     @Column
@@ -54,11 +56,11 @@ public class Message {
         this.recipientId = recipientId;
     }
 
-    public int getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(int timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 
