@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Strona główna</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>  
+</head>
+<body style="background-color:powderblue;">
+
+<div class="container">
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<div class="text-center">
+<form>
+    <div class="form-group" ng-app="myApp" ng-controller="myCtrl">
+	<h2><label for="log">Login:</label></h2>
+	<input type="text" class="form-control"  id="log" value="" ng-model="log">
+    </div>
+    <div class="form-group">
+	<h2><label for="passwd">Hasło:</label></h2>
+	<input type="password" class="form-control"  id="passwd" value="">
+    </div><br>
+	<a href="board.html" onclick="event.target.parentNode.submit();" class="btn btn-primary btn-block" role="button">Zaloguj się</a><br>
+</form>
+<form>
+<a href="cpassw.html" class="btn btn-primary btn-block" role="button">Zapomniałem hasła</a>
+<br>
+</form>
+
+<p class="text-center" >Jeżeli nie posiadasz konta,<br>
+<a id="l1" href="register.html">ZAREJESTRUJ SIĘ</a>
+</p>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.log= "";
+	localStorage.setItem("login", #log);
+});
+</script>
+
+
+
+</body>
+</html>
