@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nowe ogłoszenie</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+
+br {
+line-height: 110%;
+}
+</style>
+  
+</head>
+<body style="background-color:powderblue;">
+
+<div class="container">
+<div class="row">
+<div class="col-sm-3"></div>
+<div class="col-sm-6" align="center">
+<div class="btn-group btn-group-lg" role="group" >
+<a href="board.html" style="margin-top: 8px;" class="btn btn-info btn-block" role="button">Ogłoszenia</a>
+<a href="msg.html" class="btn btn-info btn-block" role="button">Wiadomości</a>
+<a href="add.html" class="btn btn-info btn-block active" role="button">Dodaj ogłoszenie</a>
+</div>
+</div>
+<div class="col-sm-3" align="right">
+<form>
+Witaj _____<br>
+<a id="log" href="p1.html">Wyloguj
+</a>
+</form>
+</div>
+
+</div>
+<div class="row">
+<div class="col-sm-4" align="right">
+<br><br>
+<h3>Tytuł:<h3><br>
+<h3>Kategoria:<h3><br>
+<h3>Cena:<h3><br>
+<h3>Opis:<h3><br>
+</div>
+<div class="col-sm-4" style="width: 100%;">
+<div class="text-center">
+
+<form id="adding">
+<div class="form-group">
+<br><br>
+<input type="text" class="form-control"  id="log" value="">
+<br><br>
+<select class="form-control" id="sel1">
+<option>1</option>
+<option>2</option>
+</select>
+<br><br>
+<input type="text" class="form-control"  id="log" value=""><br><br>
+<textarea style="width: 100%; resize: none;" id="opis" rows="5" form="adding">
+</textarea><br><br>
+
+<a href="add.html" class="btn btn-primary btn-block" role="button">Dodaj</a>
+<br><br>
+</div>
+</form>
+
+</div>
+</div>
+<div class="col-sm-4"></div>
+
+</body>
+</html>
