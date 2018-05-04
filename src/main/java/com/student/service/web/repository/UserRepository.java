@@ -2,12 +2,10 @@ package com.student.service.web.repository;
 
 import com.student.service.web.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
-    List<User> findByName(String Name);
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findById(Long userId);
+    //List<User> findByName(String Name);
 }
