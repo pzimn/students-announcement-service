@@ -38,6 +38,7 @@ public class UserController {
         return user;
     }
 
+    // Update a User
     @PutMapping("/users")
     public User updateUser(@RequestBody User user) {
         logger.info("Updating user in DB: {}. ", user);
