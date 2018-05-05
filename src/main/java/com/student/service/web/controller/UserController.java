@@ -2,16 +2,17 @@ package com.student.service.web.controller;
 
 import com.student.service.web.model.User;
 import com.student.service.web.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class UserController {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Autowired
     UserRepository userRepository;
@@ -24,45 +25,32 @@ public class UserController {
 
     // Create a new User
     @PostMapping("/users")
-    public User createUser(@Valid @RequestBody User user) {
+    public User createUser(@RequestBody User user) {
+        logger.info("Saving user: {}. ", user);
         return userRepository.save(user);
     }
 
     // Get a Single User
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable(value = "id") Long userId) {
-        //return userRepository.findById(userId);
-        //return userRepository.findOne(userId);
-        return new User();
+    public User getUserById(@PathVariable(value = "id") Integer userId) {
+        User user = userRepository.findOne(userId);
+        logger.info("Retrieved user from DB: {}. ",user);
+        return user;
     }
 
-    // Update a User
-    @PutMapping("/users/{id}")
-    public User updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
-
-        User user = userRepository.findById(userId);
-
-        user.setName(userDetails.getName());
-        user.setLastname(userDetails.getLastname());
-        user.setEmail(userDetails.getEmail());
-        user.setDepartment(userDetails.getDepartment());
-        user.setEducation(userDetails.getEducation());
-        user.setPassword(userDetails.getPassword());
-        user.setRateAvg(userDetails.getRateAvg());
-        user.setSchoolId(userDetails.getSchoolId());
-        user.setSpecialization(userDetails.getSpecialization());
-
-        User updatedUser = userRepository.save(user);
-        return updatedUser;
+    @PutMapping("/users")
+    public User updateUser(@RequestBody User user) {
+        logger.info("Updating user in DB: {}. ", user);
+        userRepository.save(user);
+        logger.info("Updated user in DB: {}. ", user);
+        return user;
     }
 
     // Delete a User
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long userId) {
-        User user = userRepository.findById(userId);
-
-        userRepository.delete(user);
-
-        return ResponseEntity.ok().build();
+    public void deleteUser(@PathVariable("id") Integer userId) {
+        logger.info("Deleting user from DB with ID: {}. ", userId);
+        userRepository.delete(userId);
     }
+
 }
