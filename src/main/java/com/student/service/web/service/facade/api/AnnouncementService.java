@@ -6,17 +6,16 @@ import java.util.List;
 
 public interface AnnouncementService {
 
-    Announcement findById(Integer id);
+    Announcement findOne(Integer id);
 
-    void saveAnnouncement(Announcement announcement);
+    Announcement save(Announcement announcement);
 
-    void updateAnnouncement(Announcement announcement);
+    void update(Announcement announcement);
 
-    void deleteAnnouncementById(Integer id);
+    void deleteById(Integer id);
 
-    void deleteAllAnnouncements();
+    void deleteAll();
 
-    List<Announcement> findAllAnnouncements();
+    List<Announcement> findAll();
 
-    boolean isAnnouncementExist(Announcement announcement);
 }

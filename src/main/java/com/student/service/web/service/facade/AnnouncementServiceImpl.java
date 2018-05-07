@@ -16,32 +16,34 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     @Autowired
     private AnnouncementRepository announcementRepository;
 
-    public Announcement findById(Integer id) {
+    @Override
+    public Announcement findOne(Integer id) {
         return announcementRepository.findOne(id);
     }
 
-    public void saveAnnouncement(Announcement announcement) {
-        announcementRepository.save(announcement);
+    @Override
+    public Announcement save(Announcement announcement) {
+        return announcementRepository.save(announcement);
     }
 
-    public void updateAnnouncement(Announcement announcement){
-        saveAnnouncement(announcement);
+    @Override
+    public void update(Announcement announcement){
+        save(announcement);
     }
 
-    public void deleteAnnouncementById(Integer id){
+    @Override
+    public void deleteById(Integer id){
         announcementRepository.delete(id);
     }
 
-    public void deleteAllAnnouncements(){
+    @Override
+    public void deleteAll(){
         announcementRepository.deleteAll();
     }
 
-    public List<Announcement> findAllAnnouncements(){
+    @Override
+    public List<Announcement> findAll(){
         return announcementRepository.findAll();
     }
 
-    public boolean isAnnouncementExist(Announcement announcement) {
-        //return findByName(announcement.getName()) != null;
-        return false; //todo
-    }
 }

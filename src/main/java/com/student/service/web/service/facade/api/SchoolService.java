@@ -6,20 +6,18 @@ import java.util.List;
 
 public interface SchoolService {
 
-    School findById(Integer id);
+    School findOne(Integer id);
 
     School findByName(String name);
 
-    void saveSchool(School school);
+    School save(School school);
 
-    void updateSchool(School school);
+    void update(School school);
 
-    void deleteSchoolById(Integer id);
+    void deleteById(Integer id);
 
-    void deleteAllSchools();
+    void deleteAll();
 
-    List<School> findAllSchools();
-
-    boolean isSchoolExist(School school);
+    List<School> findAll();
 }
 

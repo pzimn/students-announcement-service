@@ -6,17 +6,15 @@ import java.util.List;
 
 public interface MessageService {
 
-    Message findById(Integer id);
+    Message findOne(Integer id);
 
-    void saveMessage(Message message);
+    Message save(Message message);
 
-    void updateMessage(Message message);
+    void update(Message message);
 
-    void deleteMessageById(Integer id);
+    void deleteById(Integer id);
 
-    void deleteAllMessages();
+    void deleteAll();
 
-    List<Message> findAllMessages();
-
-    boolean isMessageExist(Message message);
+    List<Message> findAll();
 }

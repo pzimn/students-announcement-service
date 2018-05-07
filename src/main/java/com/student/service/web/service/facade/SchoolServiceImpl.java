@@ -16,35 +16,39 @@ public class SchoolServiceImpl implements SchoolService {
     @Autowired
     private SchoolRepository schoolRepository;
 
-    public School findById(Integer id) {
+    @Override
+    public School findOne(Integer id) {
         return schoolRepository.findOne(id);
     }
 
+    @Override
     public School findByName(String name) {
         return schoolRepository.findByName(name);
     }
 
-    public void saveSchool(School school) {
-        schoolRepository.save(school);
+    @Override
+    public School save(School school) {
+        return schoolRepository.save(school);
     }
 
-    public void updateSchool(School school){
-        saveSchool(school);
+    @Override
+    public void update(School school){
+        save(school);
     }
 
-    public void deleteSchoolById(Integer id){
+    @Override
+    public void deleteById(Integer id){
         schoolRepository.delete(id);
     }
 
-    public void deleteAllSchools(){
+    @Override
+    public void deleteAll(){
         schoolRepository.deleteAll();
     }
 
-    public List<School> findAllSchools(){
+    @Override
+    public List<School> findAll(){
         return schoolRepository.findAll();
     }
 
-    public boolean isSchoolExist(School school) {
-        return findByName(school.getName()) != null;
-    }
 }
