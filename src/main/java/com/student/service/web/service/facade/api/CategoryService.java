@@ -6,19 +6,17 @@ import java.util.List;
 
 public interface CategoryService {
 
-    Category findById(Integer id);
+    Category findOne(Integer id);
 
     Category findByName(String name);
 
-    void saveCategory(Category category);
+    Category save(Category category);
 
-    void updateCategory(Category category);
+    void update(Category category);
 
-    void deleteCategoryById(Integer id);
+    void deleteById(Integer id);
 
-    void deleteAllCategories();
+    void deleteAll();
 
-    List<Category> findAllCategories();
-
-    boolean isCategoryExist(Category category);
+    List<Category> findAll();
 }

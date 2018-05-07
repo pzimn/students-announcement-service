@@ -16,32 +16,33 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    public Message findById(Integer id) {
+    @Override
+    public Message findOne(Integer id) {
         return messageRepository.findOne(id);
     }
 
-    public void saveMessage(Message message) {
-        messageRepository.save(message);
+    @Override
+    public Message save(Message message) {
+        return messageRepository.save(message);
     }
 
-    public void updateMessage(Message message){
-        saveMessage(message);
+    @Override
+    public void update(Message message){
+        save(message);
     }
 
-    public void deleteMessageById(Integer id){
+    @Override
+    public void deleteById(Integer id){
         messageRepository.delete(id);
     }
 
-    public void deleteAllMessages(){
+    @Override
+    public void deleteAll(){
         messageRepository.deleteAll();
     }
 
-    public List<Message> findAllMessages(){
+    @Override
+    public List<Message> findAll(){
         return messageRepository.findAll();
-    }
-
-    public boolean isMessageExist(Message message) {
-        //return findByName(message.getName()) != null;
-        return false; //todo
     }
 }

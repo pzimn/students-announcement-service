@@ -16,7 +16,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category findById(Integer id) {
+    public Category findOne(Integer id) {
         return categoryRepository.findOne(id);
     }
 
@@ -25,28 +25,29 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findByName(name);
     }
 
-    public void saveCategory(Category category) {
-        categoryRepository.save(category);
+    @Override
+    public Category save(Category category) {
+        return categoryRepository.save(category);
     }
 
-    public void updateCategory(Category category){
-        saveCategory(category);
+    @Override
+    public void update(Category category){
+        save(category);
     }
 
-    public void deleteCategoryById(Integer id){
+    @Override
+    public void deleteById(Integer id){
         categoryRepository.delete(id);
     }
 
-    public void deleteAllCategories(){
+    @Override
+    public void deleteAll(){
         categoryRepository.deleteAll();
     }
 
-    public List<Category> findAllCategories(){
+    @Override
+    public List<Category> findAll(){
         return categoryRepository.findAll();
     }
 
-    public boolean isCategoryExist(Category category) {
-        //return findByName(category.getName()) != null;
-        return false; //todo
-    }
 }

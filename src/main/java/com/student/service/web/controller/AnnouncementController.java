@@ -1,7 +1,7 @@
 package com.student.service.web.controller;
 
 import com.student.service.web.model.Announcement;
-import com.student.service.web.repository.AnnouncementRepository;
+import com.student.service.web.service.facade.api.AnnouncementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,25 +16,25 @@ public class AnnouncementController {
     private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Autowired
-    AnnouncementRepository announcementRepository;
+    AnnouncementService announcementService;
 
     // Get All Announcements
     @GetMapping("/announcements")
     public List<Announcement> getAllAnnouncement() {
-        return announcementRepository.findAll();
+        return announcementService.findAll();
     }
 
     // Create a new Announcement
     @PostMapping("/announcements")
     public Announcement createAnnouncement(@RequestBody Announcement announcement) {
         logger.info("Saving announcement: {}. ", announcement);
-        return announcementRepository.save(announcement);
+        return announcementService.save(announcement);
     }
 
     // Get a Single Announcement
     @GetMapping("/announcements/{id}")
     public Announcement getAnnouncementById(@PathVariable(value = "id") Integer announcementId) {
-        Announcement announcement = announcementRepository.findOne(announcementId);
+        Announcement announcement = announcementService.findOne(announcementId);
         logger.info("Retrieved user from DB: {}. ",announcement);
         return announcement;
     }
@@ -43,7 +43,7 @@ public class AnnouncementController {
     @PutMapping("/announcements")
     public Announcement updateAnnouncement(@RequestBody Announcement announcement) {
         logger.info("Updating announcement in DB: {}. ", announcement);
-        announcementRepository.save(announcement);
+        announcementService.save(announcement);
         logger.info("Updated announcement in DB: {}. ", announcement);
         return announcement;
     }
@@ -52,7 +52,7 @@ public class AnnouncementController {
     @DeleteMapping("/announcements/{id}")
     public void deleteAnnouncement(@PathVariable("id") Integer announcementId) {
         logger.info("Deleting announcement from DB with ID: {}. ", announcementId);
-        announcementRepository.delete(announcementId);
+        announcementService.deleteById(announcementId);
     }
 
 }

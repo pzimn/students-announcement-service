@@ -16,32 +16,33 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public Comment findById(Integer id) {
+    @Override
+    public Comment findOne(Integer id) {
         return commentRepository.findOne(id);
     }
 
-    public void saveComment(Comment comment) {
-        commentRepository.save(comment);
+    @Override
+    public Comment save(Comment comment) {
+        return commentRepository.save(comment);
     }
 
-    public void updateComment(Comment comment){
-        saveComment(comment);
+    @Override
+    public void update(Comment comment){
+        save(comment);
     }
 
-    public void deleteCommentById(Integer id){
+    @Override
+    public void deleteById(Integer id){
         commentRepository.delete(id);
     }
 
-    public void deleteAllComments(){
+    @Override
+    public void deleteAll(){
         commentRepository.deleteAll();
     }
 
-    public List<Comment> findAllComments(){
+    @Override
+    public List<Comment> findAll(){
         return commentRepository.findAll();
-    }
-
-    public boolean isCommentExist(Comment comment) {
-        //return findByName(comment.getName()) != null;
-        return false; //todo
     }
 }

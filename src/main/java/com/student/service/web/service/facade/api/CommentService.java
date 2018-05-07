@@ -6,17 +6,15 @@ import java.util.List;
 
 public interface CommentService {
 
-    Comment findById(Integer id);
+    Comment findOne(Integer id);
 
-    void saveComment(Comment comment);
+    Comment save(Comment comment);
 
-    void updateComment(Comment comment);
+    void update(Comment comment);
 
-    void deleteCommentById(Integer id);
+    void deleteById(Integer id);
 
-    void deleteAllComments();
+    void deleteAll();
 
-    List<Comment> findAllComments();
-
-    boolean isCommentExist(Comment comment);
+    List<Comment> findAll();
 }

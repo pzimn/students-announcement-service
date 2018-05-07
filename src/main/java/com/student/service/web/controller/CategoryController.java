@@ -1,9 +1,7 @@
 package com.student.service.web.controller;
 
-import com.student.service.web.model.Announcement;
 import com.student.service.web.model.Category;
-import com.student.service.web.repository.AnnouncementRepository;
-import com.student.service.web.repository.CategoryRepository;
+import com.student.service.web.service.facade.api.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +16,25 @@ public class CategoryController {
     private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Autowired
-    CategoryRepository categoryRepository;
+    CategoryService categoryService;
 
     // Get All Categories
     @GetMapping("/categories")
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        return categoryService.findAll();
     }
 
     // Create a new Category
     @PostMapping("/categories")
     public Category createCategory(@RequestBody Category category) {
         logger.info("Saving category: {}. ", category);
-        return categoryRepository.save(category);
+        return categoryService.save(category);
     }
 
     // Get a Single Category
     @GetMapping("/categories/{id}")
     public Category getCategoryById(@PathVariable(value = "id") Integer categoryId) {
-        Category category = categoryRepository.findOne(categoryId);
+        Category category = categoryService.findOne(categoryId);
         logger.info("Retrieved user from DB: {}. ",category);
         return category;
     }
@@ -45,7 +43,7 @@ public class CategoryController {
     @PutMapping("/categories")
     public Category updateCategory(@RequestBody Category category) {
         logger.info("Updating category in DB: {}. ", category);
-        categoryRepository.save(category);
+        categoryService.save(category);
         logger.info("Updated category in DB: {}. ", category);
         return category;
     }
@@ -54,7 +52,7 @@ public class CategoryController {
     @DeleteMapping("/categories/{id}")
     public void deleteCategory(@PathVariable("id") Integer categoryId) {
         logger.info("Deleting category from DB with ID: {}. ", categoryId);
-        categoryRepository.delete(categoryId);
+        categoryService.deleteById(categoryId);
     }
 
 }
