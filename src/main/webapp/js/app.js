@@ -3,7 +3,7 @@ var app = angular.module('app',[]);
 app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,UserCRUDService) {
 
     $scope.updateUser = function () {
-        UserCRUDService.updateUser($scope.user.id,$scope.user.email, $scope.user.name, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.department, $scope.user.specialization)
+        UserCRUDService.updateUser($scope.user.id,$scope.user.email, $scope.user.name, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
             .then(function success(response){
                     $scope.message = 'User data updated!';
                     $scope.errorMessage = '';
@@ -35,14 +35,14 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
 
     $scope.addUser = function () {
 
-            UserCRUDService.addUser($scope.user.name, $scope.user.email, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.department, $scope.user.specialization)
+            UserCRUDService.addUser($scope.user.name, $scope.user.email, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
                 .then (function success(response){
                         $scope.message = 'User added!';
-                        $scope.errorMessage = 'a';
+                        $scope.errorMessage = '';
                     },
                     function error(response){
                         $scope.errorMessage = 'Error adding user!';
-                        $scope.message = 'b';
+                        $scope.message = '';
                     });
 
     };
@@ -64,11 +64,11 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
         UserCRUDService.getAllUsers()
             .then(function success(response){
                     $scope.users = response.data;
-                    $scope.message='1';
-                    $scope.errorMessage = '2';
+                    $scope.message='';
+                    $scope.errorMessage = '';
                 },
                 function error (response){
-                    $scope.message='1';
+                    $scope.message='';
                     $scope.errorMessage = 'Error getting users!';
                 });
     }
@@ -84,11 +84,11 @@ app.service('UserCRUDService',['$http', function ($http) {
         });
     }
 
-    this.addUser = function addUser(name, email, lastname, password, education, specialization,department){
+    this.addUser = function addUser(name, email, lastname, password, education, schooldId, department, specialization){
         return $http({
             method: 'POST',
             url: 'api/users',
-            data: {name:name, email:email, lastname:lastname, password:password, education:education,specialization:specialization, department:department}
+            data: {name:name, email:email, lastname:lastname, password:password, education:education, schoolId:schooldId ,department:department, specialization:specialization}
         });
     }
 

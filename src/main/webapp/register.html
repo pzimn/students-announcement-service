@@ -48,6 +48,7 @@
         <p class="pp1">Nazwisko:</p>
         <p class="pp1">Wykształcenie:</p>
         <p class="pp1">Uczelnia:</p>
+        <p class="pp1">Wydział:</p>
         <p class="pp1">Specjalizacja:</p>
         <p class="pp1">Email:</p>
 
@@ -69,19 +70,20 @@
 
 
 
-                    <input type="text" ng-model="ctrl.user.name" id="uname" class="username form-control input-sm" required ng-minlength="3"/><br>
+                    <input type="text" ng-model="user.name" class="username form-control input-sm" required ng-minlength="3"/><br>
                     <input type="text" ng-model="user.lastname" class="form-control" required value=""><br>
                     <select class="form-control" style="background-color:lightgreen;" ng-model="user.education">
-                        <option>1</option>
-                        <option>2</option>
+                        <option>Inz.</option>
+                        <option>średnie</option>
                     </select><br>
 
-                    <select class="form-control" ng-model="user.schoolId" style="background-color:lightgreen;"  id="school">
+                    <select class="form-control" ng-model="user.schoolId" style="background-color:lightgreen;">
                         <option>1</option>
                         <option>2</option>
                     </select><br>
-                    <input type="text" ng-model="user.specialization" class="form-control" required  id="spec" value=""><br>
-                    <input type="email" ng-model="user.mail" class="form-control" required  id="mail" value=""><br>
+                    <input type="text" ng-model="user.department" class="form-control" required value=""><br>
+                    <input type="text" ng-model="user.specialization" class="form-control" required  value=""><br>
+                    <input type="email" ng-model="user.email" class="form-control" required value=""><br>
 
 
 
@@ -104,7 +106,7 @@
 
         <div class="form-group">
             <div class="text-center" align="center">
-                <button ng-click="addUser(user.email,user.name,user.lastname, user.password,user.education, user.department, user.specialization)" class="btn btn-primary btn-block" align="center" ng-disabled="myForm.$invalid"> >Zarejestruj się </button>
+                <button ng-click="addUser(user.name, user.email, user.lastname, user.password, user.education, user.schoolId, user.department, user.specialization)" class="btn btn-primary btn-block" align="center" ng-disabled="myForm.$invalid"> >Zarejestruj się </button>
                 <!--<a align="center" href="p1.html" class="btn btn-primary btn-block" role="button">Zarejestruj się</a>-->
                 <p style="color: green">{{message}}</p>
                 <p style="color: red">{{errorMessage}}</p>
