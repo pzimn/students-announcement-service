@@ -34,8 +34,8 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
     }
 
     $scope.addUser = function () {
-        if ($scope.user != null && $scope.user.name &&  $scope.user.email &&  $scope.user.name &&  $scope.user.lastname &&  $scope.user.password &&  $scope.user.education &&  $scope.user.department &&  $scope.user.specialization) {
-            UserCRUDService.addUser($scope.user.email, $scope.user.name, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.department, $scope.user.specialization)
+
+            UserCRUDService.addUser($scope.user.name, $scope.user.email, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.department, $scope.user.specialization)
                 .then (function success(response){
                         $scope.message = 'User added!';
                         $scope.errorMessage = 'a';
@@ -44,11 +44,7 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                         $scope.errorMessage = 'Error adding user!';
                         $scope.message = 'b';
                     });
-        }
-        else {
-            $scope.errorMessage = '!';
-            $scope.message = '';
-        }
+
     };
 
     $scope.deleteUser = function () {

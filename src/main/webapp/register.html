@@ -31,7 +31,7 @@
 
 </head>
 
-<body style="background-color:powderblue;">
+<body ng-controller="UserCRUDCtrl"  style="background-color:powderblue;">
 
 <div class="container">
     <div class="text-center">
@@ -104,13 +104,12 @@
 
         <div class="form-group">
             <div class="text-center" align="center">
-                <button ng-click="addUser(user.email,user.name,user.lastname, user.password,user.education, user.department,user.specialization)" class="btn btn-primary btn-block" align="center" ng-disabled="myForm.$invalid"> >Zarejestruj się </button>
+                <button ng-click="addUser(user.email,user.name,user.lastname, user.password,user.education, user.department, user.specialization)" class="btn btn-primary btn-block" align="center" ng-disabled="myForm.$invalid"> >Zarejestruj się </button>
                 <!--<a align="center" href="p1.html" class="btn btn-primary btn-block" role="button">Zarejestruj się</a>-->
                 <p style="color: green">{{message}}</p>
                 <p style="color: red">{{errorMessage}}</p>
             </div>
-            <p style="color: green">{{message}}</p>
-            <p style="color: red">{{errorMessage}}</p>
+
         </div>
 
 
