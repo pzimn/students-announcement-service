@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html  ng-app="app" lang="en">
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="js/app.js"></script>
+<head>
+    <title>Nowe ogłoszenie</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+        p.pp1{
+            font-size: 150%;
+            padding:5px;
+        }
+
+        br {
+            line-height: 110%;
+        }
+
+        input.ng-invalid {
+            background-color:yellow;
+        }
+        input.ng-valid {
+            background-color:lightgreen;
+        }
+
+
+    </style>
+
+</head>
+
+<body style="background-color:powderblue;">
+
+<div class="container">
+    <div class="text-center">
+        <h1>Rejestracja</h1>
+    </div>
+</div>
+<form name="myForm" class="form-horizontal">
+<div class="row">
+    <div class="col-sm-5" align="right">
+        <br><br>
+
+        <p class="pp1">Hasło:</p>
+        <p class="pp1">Imię:</p>
+        <p class="pp1">Nazwisko:</p>
+        <p class="pp1">Wykształcenie:</p>
+        <p class="pp1">Uczelnia:</p>
+        <p class="pp1">Specjalizacja:</p>
+        <p class="pp1">Email:</p>
+
+    </div>
+    <div class="col-sm-3">
+        <div class="text-center">
+
+
+                <div class="form-group">
+
+                    <br><br>
+
+                    <!--<input type="password" class="form-control" required id="pswd" value=""></br>-->
+                    <input type="password" class="form-control" ng-model="user.password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                           title="Hasło musi zawierać co najmniej jedną liczbę, jedną wielką i małą literę, i co najmniej 8 znaków." required>
+                    </br>
+
+
+
+
+
+                    <input type="text" ng-model="ctrl.user.name" id="uname" class="username form-control input-sm" required ng-minlength="3"/><br>
+                    <input type="text" ng-model="user.lastname" class="form-control" required value=""><br>
+                    <select class="form-control" style="background-color:lightgreen;" ng-model="user.education">
+                        <option>1</option>
+                        <option>2</option>
+                    </select><br>
+
+                    <select class="form-control" ng-model="user.schoolId" style="background-color:lightgreen;"  id="school">
+                        <option>1</option>
+                        <option>2</option>
+                    </select><br>
+                    <input type="text" ng-model="user.specialization" class="form-control" required  id="spec" value=""><br>
+                    <input type="email" ng-model="user.mail" class="form-control" required  id="mail" value=""><br>
+
+
+
+                    <br><br>
+                </div>
+
+
+
+
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-5"></div>
+    <div class="col-sm-3" align="center">
+
+
+
+        <div class="form-group">
+            <div class="text-center" align="center">
+                <button ng-click="addUser(user.email,user.name,user.lastname, user.password,user.education, user.department,user.specialization)" class="btn btn-primary btn-block" align="center" ng-disabled="myForm.$invalid"> >Zarejestruj się </button>
+                <!--<a align="center" href="p1.html" class="btn btn-primary btn-block" role="button">Zarejestruj się</a>-->
+                <p style="color: green">{{message}}</p>
+                <p style="color: red">{{errorMessage}}</p>
+            </div>
+            <p style="color: green">{{message}}</p>
+            <p style="color: red">{{errorMessage}}</p>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</form>
+
+
+</body>
+</html>
