@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 </head>
-<body style="background-color:powderblue;">
+<body ng-controller="UserCRUDCtrl" style="background-color:powderblue;">
 
 <div class="container">
     <div class="row">
@@ -54,8 +54,10 @@
         <div class="col-sm-4">
         </div>
 
-            <div class="table-responsive">
-            <table class="table table-bordered table-sm">
+            <div class="table-responsive" >
+
+            <table class="table table-bordered table-sm" >
+                <button ng-click="getAnnouncements()">Get all announcements</button><br />
                 <thead>
                 <tr>
                     <th>Tytuł</th>
@@ -64,6 +66,15 @@
                     <th>Średnia ocen</th>
                     <th>Kontakt</th>
                 </tr>
+                <tr ng-repeat="a in announcements">>
+                    <td>{{a.title}}</td>
+                    <td>{{a.userId}}</td>
+                    <td>{{a.price}}</td>
+                </tr>
+
+                </tr>
+
+
                 </thead>
 
             </table>
@@ -75,10 +86,10 @@
 </div>
 
 <div ng-controller="UserCRUDCtrl">
-    <button ng-click="getAllUsers()">Get all Users</button><br />
+    <button ng-click="getAllUsers()">Get all usrs</button><br />
     <br /> <br />
     <div ng-repeat="usr in users">
-        {{usr.name}} {{usr.email}}
+        {{usr.name}} {{usr.lastname}}
     </div>
 </div>
 

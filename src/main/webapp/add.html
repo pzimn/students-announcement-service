@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  ng-app="app" lang="en">
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="js/app.js"></script>
+
 <head>
     <title>Nowe ogłoszenie</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
     <style>
 
         br {
@@ -14,7 +18,7 @@
     </style>
 
 </head>
-<body style="background-color:powderblue;">
+<body ng-controller="UserCRUDCtrl" style="background-color:powderblue;">
 
 <div class="container">
     <div class="row">
@@ -49,19 +53,25 @@
                 <form id="adding">
                     <div class="form-group">
                         <br><br>
-                        <input type="text" class="form-control"  id="log" value="">
+                        <input type="text" class="form-control"  ng-model="title" >
                         <br><br>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" ng-model="categoryId">
                             <option>1</option>
                             <option>2</option>
+                            <option>8</option>
+                            <option>13</option>
                         </select>
                         <br><br>
-                        <input type="text" class="form-control"  id="log2" value=""><br><br>
-                        <textarea style="width: 100%; resize: none;" id="opis" rows="5" form="adding">
+                        <input type="text" class="form-control" ng-model="price"><br><br>
+                        <textarea style="width: 100%; resize: none;"  rows="5" ng-model="description">
 </textarea><br><br>
-
-                        <a href="add.html" class="btn btn-primary btn-block" role="button">Dodaj</a>
+<!--<a href="add.html" class="btn btn-primary btn-block" role="button">Dodaj</a>-->
+                        <div>
+                        <button ng-click="addAnnouncement(title,categoryId,price,description)" class="btn btn-primary btn-block" allign="center">Dodaj</button>
+                        <p style="color: green">{{message}}</p>
+                        <p style="color: red">{{errorMessage}}</p>
                         <br><br>
+                        </div>
                     </div>
                 </form>
 

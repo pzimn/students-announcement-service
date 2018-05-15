@@ -35,15 +35,29 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
 
     $scope.addUser = function () {
 
-            UserCRUDService.addUser($scope.user.name, $scope.user.email, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
-                .then (function success(response){
-                        $scope.message = 'User added!';
-                        $scope.errorMessage = '';
-                    },
-                    function error(response){
-                        $scope.errorMessage = 'Error adding user!';
-                        $scope.message = '';
-                    });
+        UserCRUDService.addUser($scope.user.name, $scope.user.email, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
+            .then (function success(response){
+                    $scope.message = 'User added!';
+                    $scope.errorMessage = '';
+                },
+                function error(response){
+                    $scope.errorMessage = 'Error adding user!';
+                    $scope.message = '';
+                });
+
+    };
+
+    $scope.addAnnouncement = function () {
+
+        UserCRUDService.addAnnouncement($scope.title, $scope.categoryId, $scope.price, $scope.description)
+            .then (function success(response){
+                    $scope.message = 'Announcement added!';
+                    $scope.errorMessage = '';
+                },
+                function error(response){
+                    $scope.errorMessage = 'Error adding announcement!';
+                    $scope.message = '';
+                });
 
     };
 
@@ -73,6 +87,19 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                 });
     }
 
+    $scope.getAnnouncements = function () {
+        UserCRUDService.getAnnouncements()
+            .then(function success(response){
+                    $scope.announcements = response.data;
+                    $scope.message='';
+                    $scope.errorMessage = '';
+                },
+                function error (response){
+                    $scope.message='';
+                    $scope.errorMessage = 'Error getting anns!';
+                });
+    }
+
 }]);
 
 app.service('UserCRUDService',['$http', function ($http) {
@@ -91,6 +118,20 @@ app.service('UserCRUDService',['$http', function ($http) {
             data: {name:name, email:email, lastname:lastname, password:password, education:education, schoolId:schooldId ,department:department, specialization:specialization}
         });
     }
+
+    this.addAnnouncement = function addAnnouncement(title, categoryid, price, description){
+        return $http({
+            method: 'POST',
+            url: 'api/announcements',
+            data: {userId:"2",title:title, categoryId:categoryid, price:price, description:description}
+        });
+    }
+
+
+
+
+
+
 
     this.deleteUser = function deleteUser(id){
         return $http({
@@ -111,6 +152,13 @@ app.service('UserCRUDService',['$http', function ($http) {
         return $http({
             method: 'GET',
             url: 'api/users'
+        });
+    }
+
+    this.getAnnouncements = function getAnnouncements(){
+        return $http({
+            method: 'GET',
+            url: 'api/announcements'
         });
     }
 
