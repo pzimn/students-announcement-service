@@ -40,9 +40,11 @@
 
                 <form>
                     <br><BR>
-                    <select class="form-control" id="sel1">
+                    <select class="form-control" ng-model="user.id">
                         <option>1</option>
                         <option>2</option>
+                        <option>12</option>
+                        <option>13</option>
                     </select>
                     <br>
                 </form>
@@ -54,10 +56,15 @@
         <div class="col-sm-4">
         </div>
 
-            <div class="table-responsive" >
+            <div ng-init="getALLUsers()" class="table-responsive" >
+                <div >
+                    <l ng-init="getAllUsers()"></l><br />
+                    <br /> <br />
+                    <div ng-repeat="usr in users|filter:{'id': user.id}:true">
 
-            <table class="table table-bordered table-sm" >
-                <button ng-click="getAnnouncements()">Get all announcements</button><br />
+                    </div>
+                </div>
+            <table class="table table-bordered table-sm" ng-init="getAnnouncements()" ng-init="getALLUsers()">
                 <thead>
                 <tr>
                     <th>Tytuł</th>
@@ -66,10 +73,11 @@
                     <th>Średnia ocen</th>
                     <th>Kontakt</th>
                 </tr>
-                <tr ng-repeat="a in announcements">>
+                <tr ng-repeat="a in announcements|filter:user.id">
                     <td>{{a.title}}</td>
-                    <td>{{a.userId}}</td>
+                    <td ng-repeat="xx in users|filter:{'id': a.userId}:true">{{xx.name}} {{xx.lastname}}</td>
                     <td>{{a.price}}</td>
+                    <td ng-repeat="x in users|filter:{'id': a.userId}:true">{{x.rateAvg}}</td>
                 </tr>
 
                 </tr>
@@ -79,20 +87,24 @@
 
             </table>
         </div>
+<div ng-init="getALLUsers()">
 
+</div>
     </div>
 
 
 </div>
 
-<div ng-controller="UserCRUDCtrl">
+
+<!--
+<div >
     <button ng-click="getAllUsers()">Get all usrs</button><br />
     <br /> <br />
-    <div ng-repeat="usr in users">
-        {{usr.name}} {{usr.lastname}}
+    <div ng-repeat="usr in users|filter:{'id': user.id}:true">
+        {{usr.name}} {{usr.lastname}} {{usr.id}}
     </div>
 </div>
-
+-->
 
 </body>
 </html>
