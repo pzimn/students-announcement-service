@@ -2,6 +2,8 @@ var app = angular.module('app',[]);
 
 app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,UserCRUDService) {
 
+    $scope.test = 'testasd';
+
     $scope.updateUser = function () {
         UserCRUDService.updateUser($scope.user.id,$scope.user.email, $scope.user.name, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
             .then(function success(response){
@@ -12,7 +14,7 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                     $scope.errorMessage = 'Error updating user!';
                     $scope.message = '';
                 });
-    }
+    };
     $scope.getUser = function () {
         var id = $scope.user.id;
         UserCRUDService.getUser($scope.user.id)
@@ -31,7 +33,7 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                         $scope.errorMessage = "Error getting user!";
                     }
                 });
-    }
+    };
 
     $scope.addUser = function () {
 
@@ -126,12 +128,6 @@ app.service('UserCRUDService',['$http', function ($http) {
             data: {userId:"2",title:title, categoryId:categoryid, price:price, description:description}
         });
     }
-
-
-
-
-
-
 
     this.deleteUser = function deleteUser(id){
         return $http({
