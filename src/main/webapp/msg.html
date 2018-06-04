@@ -64,14 +64,24 @@
 <textarea style="resize: none;" id="ta2" readonly rows="15" cols="40">
 
 </textarea>
+                <div id="timestamp" style="display: none;"></div>
+                <textarea ng-model="content" style="resize: none;" rows="1" cols="40">
+                    </textarea><br>
+                <button ng-click="addMsg(2, 20, timestamp, content)" onclick="myFunction(event)" style="width:307px">Wyślij</button>
 
-                <textarea id="ta1" style="resize: none;" rows="1" cols="40">
-
-</textarea>
 
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function myFunction(event) {
+        var n = event.timeStamp;
+        document.getElementById("timestamp").innerHTML = n;
+    }
+
+</script>
+
 </body>
 </html>

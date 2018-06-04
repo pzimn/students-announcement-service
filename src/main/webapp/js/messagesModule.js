@@ -2,6 +2,20 @@ var app1 = angular.module('app1',[]);
 
 app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, MessageCRUDService) {
 
+    $scope.addMsg = function () {
+
+        MessageCRUDService.addMsg($scope.senderId, $scope.recipientId, $scope.timestamp, $scope.content)
+            .then (function success(response){
+                    $scope.message = 'msg added!';
+                    $scope.errorMessage = '';
+                },
+                function error(response){
+                    $scope.errorMessage = 'error adding msg!';
+                    $scope.message = '';
+                });
+
+    };
+
     $scope.getAllMessages = function () {
         MessageCRUDService.getAllMessages()
             .then(function success(response){
@@ -53,6 +67,14 @@ app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, 
 }]);
 
 app1.service('MessageCRUDService',['$http', function ($http) {
+
+    this.addMsg = function addMsg(senderId, recipientId, timestamp, content){
+        return $http({
+            method: 'POST',
+            url: 'api/messages',
+            data: {senderId:senderId, recipientId:recipientId, timestamp:timestamp, content:content}
+        });
+    }
 
     this.getAllMessages = function getAllMessages(){
         return $http({

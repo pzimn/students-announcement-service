@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+
+    <style>
+        p.hh{
+            font-size: 155%;
+            padding:5px;
+        }
+
+        br {
+            line-height: 110%;
+        }
+
+        input.ng-invalid {
+            background-color:yellow;
+        }
+        input.ng-valid {
+            background-color:lightgreen;
+        }
+    </style>
+
 </head>
 
 <body style="background-color:powderblue;">
@@ -17,18 +36,18 @@
     <div class="col-sm-3" align="right"></div>
     <div class="col-sm-3" align="right">
         <br><br>
-        <h3>Login:</h3><br>
-            <h3>Pytanie pomocnicze:</h3><br>
-                <h3>Odpowiedź:</h3><br>
-                    <h3>Nowe hasło:</h3><br>
+        <p class = "hh">Login:</p>
+        <p class = "hh">Pytanie pomocnicze:</p>
+        <p class = "hh">Odpowiedź:</p>
+        <p class = "hh">Nowe hasło:</p>
     </div>
     <div class="col-sm-3">
         <form>
             <br><br>
-            <input type="text" class="form-control"  id="log" value=""><br><br>
-            <input type="text" class="form-control"  id="question" value=""><br><br>
-            <input type="password" class="form-control"  id="answer" value=""><br><br>
-            <input type="password" class="form-control"  id="passwd" value=""><br><br>
+            <input type="text" class="form-control"  id="log" value=""><br>
+            <input type="text" class="form-control"  id="question" value=""><br>
+            <input type="password" class="form-control"  id="answer" value=""><br>
+            <input type="password" class="form-control"  id="passwd" value=""><br>
             <a href="index.html" class="btn btn-primary btn-block" role="button">Zmień hasło</a><br>
 
         </form>

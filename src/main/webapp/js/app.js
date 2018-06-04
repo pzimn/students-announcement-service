@@ -2,7 +2,34 @@ var app = angular.module('app',[]);
 
 app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,UserCRUDService) {
 
-    $scope.test = 'testasd';
+    $scope.test1='13';
+
+    $scope.addMsg = function () {
+
+        UserCRUDService.addMsg($scope.senderId, $scope.recipientId, $scope.timestamp, $scope.content)
+            .then (function success(response){
+                    $scope.message = 'msg added!';
+                    $scope.errorMessage = '';
+                },
+                function error(response){
+                    $scope.errorMessage = 'error adding msg!';
+                    $scope.message = '';
+                });
+
+    };
+
+    $scope.getAllMessages = function () {
+        UserCRUDService.getAllMessages()
+            .then(function success(response){
+                    $scope.msgs = response.data;
+                    $scope.message='';
+                    $scope.errorMessage = '';
+                },
+                function error (response){
+                    $scope.message='';
+                    $scope.errorMessage = 'Error getting msgs!';
+                });
+    };
 
     $scope.updateUser = function () {
         UserCRUDService.updateUser($scope.user.id,$scope.user.email, $scope.user.name, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
@@ -76,6 +103,19 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                 })
     }
 
+    $scope.getAllSchools = function () {
+        UserCRUDService.Schools()
+            .then(function success(response){
+                    $scope.schools = response.data;
+                    $scope.message='';
+                    $scope.errorMessage = '';
+                },
+                function error (response){
+                    $scope.message='';
+                    $scope.errorMessage = 'Error getting users!';
+                });
+    }
+
     $scope.getAllUsers = function () {
         UserCRUDService.getAllUsers()
             .then(function success(response){
@@ -105,6 +145,14 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
 }]);
 
 app.service('UserCRUDService',['$http', function ($http) {
+
+    this.addMsg = function addMsg(senderId, recipientId, timestamp, content){
+        return $http({
+            method: 'POST',
+            url: 'api/messages',
+            data: {senderId:senderId, recipientId:recipientId, timestamp:timestamp, content:content}
+        });
+    }
 
     this.getUser = function getUser(userId){
         return $http({
@@ -151,10 +199,25 @@ app.service('UserCRUDService',['$http', function ($http) {
         });
     }
 
+    this.getAllSchools = function getAllSchools(){
+        return $http({
+            method: 'GET',
+            url: 'api/schools'
+        });
+    }
+
+
     this.getAnnouncements = function getAnnouncements(){
         return $http({
             method: 'GET',
             url: 'api/announcements'
+        });
+    }
+
+    this.getAllMessages = function getAllMessages() {
+        return $http({
+            method: 'GET',
+            url: 'api/messages'
         });
     }
 
