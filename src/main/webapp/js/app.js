@@ -1,8 +1,15 @@
 var app = angular.module('app',[]);
 
+
+
+
+
 app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,UserCRUDService) {
 
-    $scope.test1='13';
+    $scope.test1='abc13';
+    var msgs;
+    $scope.timestamp = new Date().getTime() ;
+
 
     $scope.addMsg = function () {
 
@@ -21,8 +28,10 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
     $scope.getAllMessages = function () {
         UserCRUDService.getAllMessages()
             .then(function success(response){
-                    $scope.msgs = response.data;
-                    $scope.message='';
+                    $scope.messages = response.data;
+                    msgs=response.data;
+                    this.descriptions = msgs.join('\n');
+                    $scope.message='ok';
                     $scope.errorMessage = '';
                 },
                 function error (response){
@@ -78,8 +87,9 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
 
     $scope.addAnnouncement = function () {
 
-        UserCRUDService.addAnnouncement($scope.title, $scope.categoryId, $scope.price, $scope.description)
+        UserCRUDService.addAnnouncement($scope.userId, $scope.categoryId, $scope.title, $scope.description, $scope.price )
             .then (function success(response){
+                    console.log("dodano ogloszenie");
                     $scope.message = 'Announcement added!';
                     $scope.errorMessage = '';
                 },
@@ -169,11 +179,11 @@ app.service('UserCRUDService',['$http', function ($http) {
         });
     }
 
-    this.addAnnouncement = function addAnnouncement(title, categoryid, price, description){
+    this.addAnnouncement = function addAnnouncement(userId, categoryId, title, description, price){
         return $http({
             method: 'POST',
             url: 'api/announcements',
-            data: {userId:"2",title:title, categoryId:categoryid, price:price, description:description}
+            data: {userId:userId, categoryId:categoryId, title:title, description:description, price:price}
         });
     }
 
@@ -215,6 +225,8 @@ app.service('UserCRUDService',['$http', function ($http) {
     }
 
     this.getAllMessages = function getAllMessages() {
+
+
         return $http({
             method: 'GET',
             url: 'api/messages'
@@ -222,3 +234,21 @@ app.service('UserCRUDService',['$http', function ($http) {
     }
 
 }]);
+
+app.directive('jsonText', function() {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            function into(input) {
+                console.log(JSON.parse(input));
+                return JSON.parse(input);
+            }
+            function out(data) {
+                return JSON.stringify(data);
+            }
+            ngModel.$parsers.push(into);
+            ngModel.$formatters.push(out);
+        }
+    };
+});

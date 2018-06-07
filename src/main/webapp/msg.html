@@ -45,12 +45,14 @@
                     <tr>
                         <th>Nr</th>
                         <th>Użytkownik</th>
+                        <th>Odbiorca</th>
                         <th>Treść</th>
                         <th>Data</th>
                     </tr>
-                    <tr ng-repeat="message in messages|filter:{senderId: cUser}:true" ng-init="getUser(message.senderId)">
+                    <tr ng-repeat="message in messages|filter:{senderId: cUser}:true" ng-init="getUser(message.senderId)" ng-init="getAllUsers()">
                         <td>{{$index}}</td>
                         <td >{{user.name}}</td>
+                        <td ng-repeat="xx in users|filter:{'id': message.recipientId}:true">{{xx.lastname}}</td>
                         <td>{{message.content}}</td>
                         <td>{{message.timestamp | date:'dd-MM-yy HH:mm:ss'}}</td>
                     </tr>
@@ -61,27 +63,24 @@
 
         <div class="col-sm-6" align="left">
             <div class="text-center">
-<textarea style="resize: none;" id="ta2" readonly rows="15" cols="40">
+<textarea style="resize: none;" id="ta2" ng-model="texta" readonly rows="15" cols="40">
 
 </textarea>
+                <form>
+                <input type="number" ng-model="senderId" ng-value="2" style="display: none;">
+                <input type="number" ng-model="recipientId" ng-value="24" style="display: none;" >
+                <input type="hidden" ng-model="timestamp" ng-value="timestamp">
                 <div id="timestamp" style="display: none;"></div>
                 <textarea ng-model="content" style="resize: none;" rows="1" cols="40">
                     </textarea><br>
-                <button ng-click="addMsg(2, 20, timestamp, content)" onclick="myFunction(event)" style="width:307px">Wyślij</button>
-
+                <button ng-click="addMsg(senderId, recipientId, timestamp, content)" style="width:307px">Wyślij</button>
+                </form>
 
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    function myFunction(event) {
-        var n = event.timeStamp;
-        document.getElementById("timestamp").innerHTML = n;
-    }
-
-</script>
 
 </body>
 </html>

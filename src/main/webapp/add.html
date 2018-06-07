@@ -54,20 +54,33 @@
                     <div class="form-group">
                         <br><br>
                         <input type="text" class="form-control"  ng-model="title" >
+                        <input type="number" class="form-control"  ng-model="userId" ng-value="24" style="display: none;">
                         <br><br>
-                        <select class="form-control" ng-model="categoryId">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>8</option>
-                            <option>13</option>
+                        <select type="number" class="form-control" ng-model="categoryId">
+                            <option ng-value="1">Sprzedaż</option>
+                            <option ng-value="3">Podręczniki</option>
+                            <option ng-value="4">Elektronika</option>
+                            <option ng-value="17">Matematyka dyskretna</option>
+                            <option ng-value="18">Metdy probabilistyczne</option>
+                            <option ng-value="19">Analiza matematyczna</option>
+                            <option ng-value="20">Geometria</option>
+                            <option ng-value="6">Fizyka</option>
+                            <option ng-value="7">Chemia</option>
+                            <option ng-value="3">C/C++</option>
+                            <option ng-value="3">Java</option>
+                            <option ng-value="15">C#</option>
+                            <option ng-value="3">Pascal</option>
+                            <option ng-value="15">Prolog</option>
+                            <option ng-value="3">Podręczniki</option>
+                            <option ng-value="10">Architektura Systemów</option>
                         </select>
                         <br><br>
-                        <input type="text" class="form-control" ng-model="price"><br><br>
+                        <input type="number" class="form-control" ng-model="price" step="any"><br><br>
                         <textarea style="width: 100%; resize: none;"  rows="5" ng-model="description">
 </textarea><br><br>
 <!--<a href="add.html" class="btn btn-primary btn-block" role="button">Dodaj</a>-->
                         <div>
-                        <button ng-click="addAnnouncement(title,categoryId,price,description)" class="btn btn-primary btn-block" allign="center">Dodaj</button>
+                        <button ng-click="addAnnouncement(userId,categoryId,title,description,price)" class="btn btn-primary btn-block" allign="center">Dodaj</button>
                         <p style="color: green">{{message}}</p>
                         <p style="color: red">{{errorMessage}}</p>
                         <br><br>

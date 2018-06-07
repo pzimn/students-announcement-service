@@ -24,7 +24,7 @@ public class Message {
     @Column(name = "recipient_id")
     private int recipientId;
 
-    @NotBlank
+
     @Column
     private Timestamp timestamp;
 
