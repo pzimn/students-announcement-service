@@ -8,6 +8,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+    </script>
+
     <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery-3.1.0.min.js"%3E%3C/script%3E'))</script>
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.3/css/dx.spa.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.3/css/dx.common.css" />
@@ -86,24 +89,37 @@
             </form>
         </div>
     </div>
-    <div ng-app="app" class="row">
+    <div class="row">
+    <div class="col-sm-6" align="center">
+        <br><br>
+        <div class="row">
 
-        <div class="column">
-            <div class="demo-container" ng-controller="treeController">
-                <div class="form">
-                    <div id="simple-treeview" dx-tree-view="treeViewOptions"></div>
-                    <div id="product-details" ng-if="productDbId">
-                        <div class="name">{{productName}}</div>
-                        <div class="price">{{catId=productDbId}}</input>
+            <div class="column">
+                <div class="demo-container" ng-controller="treeController">
+                    <div class="form">
+                        <div id="simple-treeview" dx-tree-view="treeViewOptions"></div>
+                        <div id="product-details" ng-if="productDbId">
+                        <!--<div class="name">{{productName}}</div>
+                        <div class="name2" ng-model="abc" value="productDbId">{{cCat=productDbId}}</div>
+<div>a{{productDbId}}a</div> <div>a{{cat}}a</div>
+                        <input id="cat2"type="text" class="price" ng-model="cat" ng-value="productDbId" ng-init="cat=productDbId"/>
+-->
+                    </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="column">
-            <div ng-controller="UserCRUDCtrl" class="table-responsive" >
+    </div>
+        <div class="col-sm-6" align="center">
+            <br><br>
+            <div class="column">
+                <div ng-controller="UserCRUDCtrl" class="table-responsive" >
 
-                <table class="table table-bordered table-sm" ng-init="getAnnouncements()">
-                    <thead>
+                    <!--<div id="inf2" ng-bind="test1"></div>
+                    <--<p ng-bind="test1"></p>-->
+                    <table class="table table-bordered table-sm" ng-init="getAnnouncements()">
+                        <thead>
                         <tr ng-init="getAllUsers()">
 
                             <th>Tytuł</th>
@@ -112,7 +128,7 @@
                             <th>Średnia ocen</th>
                             <th>Id</th>
                         </tr>
-                        <tr ng-repeat="a in announcements|filter:{'categoryId': catId}:true">
+                        <tr ng-repeat="a in announcements|filter:{'categoryId': cate}:true">
                             <td>{{a.title}}</td>
                             <td ng-repeat="xx in users|filter:{'id': a.userId}:true">{{xx.name}} {{xx.lastname}}</td>
                             <td>{{a.price}}</td>
@@ -120,92 +136,97 @@
                             <td>{{a.id}}</td>
                         </tr>
 
-                    </thead>
+                        </thead>
 
-                </table>
+                    </table>
+                    <div id="cat3"></div>
 
-                <input type="number" id="myText" value="3" ng-model="tex"> </input>
-                <button onclick="myfunction()">podaj id ogloszenia</button>
 
-                <div id="myModal" class="modal">
+                    <input type="number" id="myText" value="3" ng-model="tex"> </input>
+                    <button onclick="myfunction()">podaj id ogloszenia</button>
 
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p id="inff"></p>
-                        <div ng-repeat="a in announcements|filter:{'id':tex}:true">
-                            <div>Tytuł: {{a.title}}</div>
-                            <div ng-repeat="xx in users|filter:{'id': a.userId}:true"> Wystawiający: {{xx.name}} {{xx.lastname}}</div>
-                            <div>Cena: {{a.price}}</div>
-                            <div ng-repeat="xx in users|filter:{'id': a.userId}:true">Ocena: {{xx.rateAvg}}</div>
-                            <div>Opis: {{a.description}}</div>
+                    <div id="myModal" class="modal">
 
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p id="inff"></p>
+                            <div ng-repeat="a in announcements|filter:{'id':tex}:true">
+                                <div>Tytuł: {{a.title}}</div>
+                                <div ng-repeat="xx in users|filter:{'id': a.userId}:true"> Wystawiający: {{xx.name}} {{xx.lastname}}</div>
+                                <div>Cena: {{a.price}}</div>
+                                <div ng-repeat="xx in users|filter:{'id': a.userId}:true">Ocena: {{xx.rateAvg}}</div>
+                                <div>Opis: {{a.description}}</div>
+
+                            </div>
                         </div>
                     </div>
+                    <p id="inf"></p>
                 </div>
-            <p id="inf"></p>
             </div>
+
+
+
+
+
+
+
+
+
+
         </div>
 
     </div>
-
-
-
-    </div>
-
-
-
-
 </div>
 
+    <script>
 
 
-<script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        var inf2= document.getElementById('myModal').innerHTML;
+        var inf1= document.getElementById('myModal').innerHTML;
+        inf2=inf1;
+        // Get the button that opens the modal
+        //var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
 
-    // Get the modal
-    var modal = document.getElementById('myModal');
-    var inf2;
-    // Get the button that opens the modal
-    //var btn = document.getElementById("myBtn");
+        // When the user clicks the button, open the modal
+        function myfunction(){
+            var newOne = document.getElementById("myText").innerHTML;
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-
-    // When the user clicks the button, open the modal
-    function myfunction(){
-        var newOne = document.getElementById("myText").innerHTML;
-
-        document.getElementById("inf").innerHTML=newOne;
-        document.getElementById("inff").innerHTML=newOne;
-        modal.style.display = "block";
-    }
+            document.getElementById("inf").innerHTML=newOne;
+            document.getElementById("inff").innerHTML=newOne;
+            modal.style.display = "block";
+        }
 
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
             modal.style.display = "none";
         }
-    }
-</script>
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 
-<!--
-<div >
-    <button ng-click="getAllUsers()">Get all usrs</button><br />
-    <br /> <br />
-    <div ng-repeat="usr in users|filter:{'id': user.id}:true">
-        {{usr.name}} {{usr.lastname}} {{usr.id}}
+    <!--
+    <div >
+        <button ng-click="getAllUsers()">Get all usrs</button><br />
+        <br /> <br />
+        <div ng-repeat="usr in users|filter:{'id': user.id}:true">
+            {{usr.name}} {{usr.lastname}} {{usr.id}}
+        </div>
     </div>
-</div>
--->
+    -->
 
 </body>
 </html>
