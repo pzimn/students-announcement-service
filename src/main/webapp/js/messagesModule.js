@@ -3,7 +3,7 @@ var app1 = angular.module('app1',[]);
 app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, MessageCRUDService) {
     $scope.timestamp = new Date().getTime() ;
     $scope.senderId='2';
-    $scope.recipientId='24';
+    $scope.recipientId='25';
     $scope.addMsg = function () {
         MessageCRUDService.addMsg($scope.senderId, $scope.recipientId, $scope.timestamp, $scope.content)
             .then (function success(response){
@@ -65,6 +65,7 @@ app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, 
                 });
     }
 
+
 }]);
 
 app1.service('MessageCRUDService',['$http', function ($http) {
@@ -97,5 +98,4 @@ app1.service('MessageCRUDService',['$http', function ($http) {
             url: './api/users/'+userId
         });
     }
-
 }]);

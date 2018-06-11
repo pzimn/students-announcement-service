@@ -1,14 +1,13 @@
+
+
+
 var app = angular.module('app',[]);
-
-
-
-
-
 app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,UserCRUDService) {
 
     $scope.test1='abc13';
     var msgs;
     $scope.timestamp = new Date().getTime() ;
+
 
 
     $scope.addMsg = function () {
@@ -75,26 +74,46 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
 
         UserCRUDService.addUser($scope.user.name, $scope.user.email, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
             .then (function success(response){
-                    $scope.message = 'User added!';
+                    $scope.message = 'Użytkownik dodany!';
                     $scope.errorMessage = '';
                 },
                 function error(response){
-                    $scope.errorMessage = 'Error adding user!';
+                    $scope.errorMessage = 'Wystąpił błąd podczas dodawania użytkownika!';
                     $scope.message = '';
                 });
 
     };
+
+    $scope.getAnnouncement = function (id) {
+        UserCRUDService.getAnnouncement(id)
+            .then(function success(response){
+                    $scope.announcement = response.data;
+                    $scope.message='';
+                    $scope.errorMessage = '';
+                    console.log("pobrano ogłoszenie");
+                    console.log($scope.announcement);
+                },
+                function error (response ){
+                    $scope.message = '';
+                    if (response.status === 404){
+                        $scope.errorMessage = 'User not found!';
+                    }
+                    else {
+                        $scope.errorMessage = "Error getting user!";
+                    }
+                });
+    }
 
     $scope.addAnnouncement = function () {
 
         UserCRUDService.addAnnouncement($scope.userId, $scope.categoryId, $scope.title, $scope.description, $scope.price )
             .then (function success(response){
                     console.log("dodano ogloszenie");
-                    $scope.message = 'Announcement added!';
+                    $scope.message = 'Dodano ogloszenie!';
                     $scope.errorMessage = '';
                 },
                 function error(response){
-                    $scope.errorMessage = 'Error adding announcement!';
+                    $scope.errorMessage = 'Wystąpił błąd podczas dodawania ogłoszenia!';
                     $scope.message = '';
                 });
 
@@ -143,6 +162,7 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
         UserCRUDService.getAnnouncements()
             .then(function success(response){
                     $scope.announcements = response.data;
+                    $scope.cat=localStorage.getItem(Item('cat'));
                     $scope.message='';
                     $scope.errorMessage = '';
                 },
@@ -168,6 +188,13 @@ app.service('UserCRUDService',['$http', function ($http) {
         return $http({
             method: 'GET',
             url: './api/users/'+userId
+        });
+    }
+
+    this.getAnnouncement = function getAnnouncement(announcementId){
+        return $http({
+            method: 'GET',
+            url: './api/announcements/'+announcementId
         });
     }
 

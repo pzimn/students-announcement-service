@@ -27,7 +27,7 @@
             <form>
                 Witaj _____
                 <br>
-                <a id="log" href="index.html">Wyloguj</a>
+                <a id="log" href="test2.html">Wyloguj</a>
             </form>
         </div>
 
@@ -81,7 +81,7 @@
                             </tr>
                             <tr ng-repeat="message in messages|filter:{recipientId: cUser}:true" ng-init="getUser(message.recipientId)" ng-init="getAllUsers()">
                                 <td>{{$index}}</td>
-                                <td >{{user.lastname}}</td>
+                                <td ng-click="getUser(user.id)" >{{user.lastname}}</td>
                                 <td ng-repeat="xx in users|filter:{'id': message.senderId}:true">{{xx.lastname}}</td>
                                 <td>{{message.content}}</td>
                                 <td>{{message.timestamp | date:'dd-MM-yy HH:mm:ss'}}</td>
@@ -100,7 +100,7 @@
         </div>
         <div class="col-sm-12" align="center"><form>
             <input type="number" ng-model="senderId" ng-value="2" style="display: none;">
-            <input type="number" ng-model="recipientId" ng-value="24" text-align="center"><br>
+            <input type="number" ng-model="recipientId" ng-value="25" text-align="center"><br>
             <input type="hidden" ng-model="timestamp" ng-value="timestamp">
             <div id="timestamp" style="display: none;"></div>
             <textarea ng-model="content" style="resize: none;" rows="1" cols="40">

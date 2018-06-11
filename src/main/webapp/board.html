@@ -71,7 +71,7 @@
 </head>
 <body ng-app="DemoApp" style="background-color:powderblue;">
 
-<div class="container">
+<div class="container" ng-controller="treeController">
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6" align="middle">
@@ -90,34 +90,30 @@
         </div>
     </div>
     <div class="row">
-    <div class="col-sm-6" align="center">
+    <div class="col-sm-3" align="center">
         <br><br>
         <div class="row">
 
             <div class="column">
-                <div class="demo-container" ng-controller="treeController">
+                <div class="demo-container" >
                     <div class="form">
                         <div id="simple-treeview" dx-tree-view="treeViewOptions"></div>
                         <div id="product-details" ng-if="productDbId">
-                        <!--<div class="name">{{productName}}</div>
-                        <div class="name2" ng-model="abc" value="productDbId">{{cCat=productDbId}}</div>
-<div>a{{productDbId}}a</div> <div>a{{cat}}a</div>
-                        <input id="cat2"type="text" class="price" ng-model="cat" ng-value="productDbId" ng-init="cat=productDbId"/>
--->
+
+
+                        </div>
                     </div>
 
-                    </div>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
+
         <div class="col-sm-6" align="center">
             <br><br>
             <div class="column">
                 <div ng-controller="UserCRUDCtrl" class="table-responsive" >
 
-                    <!--<div id="inf2" ng-bind="test1"></div>
-                    <--<p ng-bind="test1"></p>-->
                     <table class="table table-bordered table-sm" ng-init="getAnnouncements()">
                         <thead>
                         <tr ng-init="getAllUsers()">
@@ -126,14 +122,13 @@
                             <th>Wystawiający</th>
                             <th>Cena</th>
                             <th>Średnia ocen</th>
-                            <th>Id</th>
                         </tr>
-                        <tr ng-repeat="a in announcements|filter:{'categoryId': cate}:true">
-                            <td>{{a.title}}</td>
+                        <tr ng-repeat="a in announcements|filter:{'categoryId': cat}:true">
+                            <td ng-click="getAnnouncement(a.id)" onclick="myfunction()" style="cursor:pointer; text-decoration:underline;">{{a.title}}</td>
                             <td ng-repeat="xx in users|filter:{'id': a.userId}:true">{{xx.name}} {{xx.lastname}}</td>
                             <td>{{a.price}}</td>
                             <td ng-repeat="x in users|filter:{'id': a.userId}:true">{{x.rateAvg}}</td>
-                            <td>{{a.id}}</td>
+
                         </tr>
 
                         </thead>
@@ -142,16 +137,12 @@
                     <div id="cat3"></div>
 
 
-                    <input type="number" id="myText" value="3" ng-model="tex"> </input>
-                    <button onclick="myfunction()">podaj id ogloszenia</button>
-
                     <div id="myModal" class="modal">
 
                         <!-- Modal content -->
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <p id="inff"></p>
-                            <div ng-repeat="a in announcements|filter:{'id':tex}:true">
+                            <div ng-repeat="a in announcements|filter:{'id':announcement.id}:true">
                                 <div>Tytuł: {{a.title}}</div>
                                 <div ng-repeat="xx in users|filter:{'id': a.userId}:true"> Wystawiający: {{xx.name}} {{xx.lastname}}</div>
                                 <div>Cena: {{a.price}}</div>
@@ -169,7 +160,7 @@
 
 
 
-
+        </div>
 
 
 
@@ -196,10 +187,7 @@
 
         // When the user clicks the button, open the modal
         function myfunction(){
-            var newOne = document.getElementById("myText").innerHTML;
 
-            document.getElementById("inf").innerHTML=newOne;
-            document.getElementById("inff").innerHTML=newOne;
             modal.style.display = "block";
         }
 
