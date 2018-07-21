@@ -1,12 +1,16 @@
 
-
-
 var app = angular.module('app',[]);
+
 app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,UserCRUDService) {
 
-    $scope.test1='abc13';
+    $scope.test1="bbb";
     var msgs;
     $scope.timestamp = new Date().getTime() ;
+    $scope.userId='2';
+
+    $scope.compare = function (repass) {
+        $scope.isconfirm = $scope.user.password == repass ? true : false;
+    }
 
 
 
@@ -28,6 +32,7 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
         UserCRUDService.getAllMessages()
             .then(function success(response){
                     $scope.messages = response.data;
+                    localStorage.setItem('hej','aba')
                     msgs=response.data;
                     this.descriptions = msgs.join('\n');
                     $scope.message='ok';
@@ -162,7 +167,7 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
         UserCRUDService.getAnnouncements()
             .then(function success(response){
                     $scope.announcements = response.data;
-                    $scope.cat=localStorage.getItem(Item('cat'));
+                    //$scope.cat=localStorage.getItem(Item('cat'));
                     $scope.message='';
                     $scope.errorMessage = '';
                 },
@@ -171,7 +176,6 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                     $scope.errorMessage = 'Error getting anns!';
                 });
     }
-
 }]);
 
 app.service('UserCRUDService',['$http', function ($http) {
@@ -279,3 +283,4 @@ app.directive('jsonText', function() {
         }
     };
 });
+

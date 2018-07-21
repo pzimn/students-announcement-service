@@ -5,38 +5,59 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="js/messagesModule.js"></script>
 
-</head>
-<body style="background-color:powderblue;">
+    <style>
+        a.a1:link{
+            background-color: slategrey;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        a.a1:hover{
+            background-color: darkslategrey;
 
-<div class="container">
-    <div class="row">
+        }
+    </style>
+
+</head>
+<body onload="getCookie();" onload="passCookie();" ng-init="ps(pass)" style="background-color:#e6e6ff;">
+<div style="background-color:lightslategrey;">
+    <div class="row" >
         <div class="col-sm-3"></div>
-        <div class="col-sm-6" align="center">
-            <div class="btn-group btn-group-lg" role="group">
-                <a href="board.html" style="margin-top: 8px;" class="btn btn-info btn-block"
-                   role="button">Ogłoszenia</a>
-                <a href="msg.html" class="btn btn-info btn-block active" role="button">Wiadomości</a>
-                <a href="add.html" class="btn btn-info btn-block" role="button">Dodaj ogłoszenie</a>
+        <div class="col-sm-6" align="middle">
+            <div class="btn-group btn-group-lg" role="group" >
+                <a class="a1" href="board.html" style="color:white;">Ogłoszenia</a>
+                <a class="a1" style="color:white; background-color: darkslategrey;" href="msg.html">Wiadomości</a>
+                <a class="a1" style="color:white; " href="add.html">Dodaj ogłoszenie</a>
             </div>
         </div>
-        <div class="col-sm-3" align="right">
+        <div class="col-sm-3" align="center" id="test">
             <form>
-                Witaj _____
-                <br>
-                <a id="log" href="test2.html">Wyloguj</a>
+                Witaj <l style="color:greenyellow;" id="ckie"></l><br>
+                <a id="log" onclick="resCookie()" style="color:blue;" href="index.html">Wyloguj</a>
             </form>
         </div>
-
     </div>
+</div>
+
+<div class="container">
+
     <br>
     <div class="row" ng-controller="tableCtrl">
         <div class="col-sm-6" align="right" >
             <div class="table-responsive" ng-init="getAllUsers()">
-                <div style="display: none;">Current user: {{cUser=2}}</div>
+                <input type="text" class="form-control" id="pass" ng-model="passs">
+
+                    <div ng-repeat="u in users|filter:{email: passs}:true">
+                        {{cUser=u.id}}
+                    </div>
+
+                <!--<div id="pass" >Current user: {{cUser=}}</div>  damian.michalski@student.put.poznan.pl-->
+                <div>{{passs}}</div>
                 <table class="table table-bordered table-sm" ng-init="getAllMessages()">
                     <thead>
                     <tr>
@@ -52,7 +73,7 @@
                     <tr ng-repeat="message in messages|filter:{senderId: cUser}:true" ng-init="getUser(message.senderId)" ng-init="getAllUsers()">
                         <td>{{$index}}</td>
                         <td >{{user.lastname}}</td>
-                        <td ng-repeat="xx in users|filter:{'id': message.recipientId}:true">{{xx.lastname}}</td>
+                        <td ng-repeat="xx in users|filter:{id: message.recipientId}:true">{{xx.lastname}}</td>
                         <td>{{message.content}}</td>
                         <td>{{message.timestamp | date:'dd-MM-yy HH:mm:ss'}}</td>
                     </tr>
@@ -110,6 +131,37 @@
     </div>
 </div>
 
+<script>
+
+    function passCookie() {
+        document.getElementById("pass").innerHTML=document.getElementById("ckie").value;
+    }
+
+    function resCookie() {
+        lo=document.getElementById("log").value;
+        document.cookie = "login2=" + " " + ";";
+    }
+    function getCookie() {
+        var name = "login2=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                document.getElementById("ckie").innerHTML = c.substring(name.length, c.length);
+                document.getElementById("pass").innerHTML = c.substring(name.length, c.length);
+                document.getElementById("pass").value = c.substring(name.length, c.length);
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+</script>
 
 </body>
 </html>

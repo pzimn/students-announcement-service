@@ -1,9 +1,31 @@
 var app1 = angular.module('app1',[]);
 
+app1.filter('unique', function() {
+    return function(collection, keyname) {
+        var output = [],
+            keys = [];
+
+        angular.forEach(collection, function(item) {
+            var key = item[keyname];
+            if(keys.indexOf(key) === -1) {
+                keys.push(key);
+                output.push(item);
+            }
+        });
+        return output;
+    };
+});
+
 app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, MessageCRUDService) {
     $scope.timestamp = new Date().getTime() ;
     $scope.senderId='2';
     $scope.recipientId='25';
+    $scope.passs='';
+
+    $scope.ps = function () {
+        return $scope.passs;
+    }
+
     $scope.addMsg = function () {
         MessageCRUDService.addMsg($scope.senderId, $scope.recipientId, $scope.timestamp, $scope.content)
             .then (function success(response){
@@ -34,7 +56,7 @@ app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, 
     $scope.getAllUsers = function () {
         MessageCRUDService.getAllUsers()
             .then(function success(response){
-                    console.log("pobrano userów");
+                    $scope.pass1=$scope.passs;
                     $scope.users = response.data;
                     $scope.message='';
                     $scope.errorMessage = '';
@@ -51,8 +73,6 @@ app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, 
                     $scope.user = response.data;
                     $scope.message='';
                     $scope.errorMessage = '';
-                    console.log("pobrano usera");
-                    console.log($scope.user);
                 },
                 function error (response ){
                     $scope.message = '';

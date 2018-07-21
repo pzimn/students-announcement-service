@@ -18,14 +18,24 @@
     <script>window.angular || document.write(decodeURIComponent('%3Cscript src="js/angular.min.js"%3E%3C\/script%3E'))</script>
     <script src="https://cdn3.devexpress.com/jslib/18.1.3/js/dx.all.js"></script>
 
-    <link rel="stylesheet" type ="text/css" href ="styles/styles.css" />
-
     <script src="js/app.js"></script>
     <script src="js/treeView.js"></script>
 
     <script src="js/data.js"></script>
 
     <style>
+        a.a1:link{
+            background-color: slategrey;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        a.a1:hover{
+            background-color: darkslategrey;
+
+        }
 
         /* The Modal (background) */
         .modal {
@@ -69,26 +79,26 @@
     </style>
 
 </head>
-<body ng-app="DemoApp" style="background-color:powderblue;">
-
-<div class="container" ng-controller="treeController">
-    <div class="row">
+<body ng-app="DemoApp" onload="getCookie();" style="background-color:#e6e6ff;">
+<div style="background-color:lightslategrey;">
+    <div class="row" >
         <div class="col-sm-3"></div>
         <div class="col-sm-6" align="middle">
             <div class="btn-group btn-group-lg" role="group" >
-                <a href="board.html" style="margin-top: 8px;" class="btn btn-info btn-block active" role="button">Ogłoszenia</a>
-                <a href="msg.html" class="btn btn-info btn-block" role="button">Wiadomości</a>
-                <a href="add.html" class="btn btn-info btn-block " role="button">Dodaj ogłoszenie</a>
+                <a class="a1" href="board.html" style="color:white; background-color: darkslategrey;">Ogłoszenia</a>
+                <a class="a1" style="color:white; " href="msg.html">Wiadomości</a>
+                <a class="a1" style="color:white; " href="add.html">Dodaj ogłoszenie</a>
             </div>
         </div>
-        <div class="col-sm-3" align="right" id="test">
+        <div class="col-sm-3" align="center" id="test">
             <form>
-                Witaj _____<br>
-
-                <a id="log" href="index.html">Wyloguj</a>
+                Witaj <l style="color:greenyellow;" id="ckie"></l><br>
+                <a id="log" onclick="resCookie()" style="color:blue;" href="index.html">Wyloguj</a>
             </form>
         </div>
     </div>
+</div>
+<div class="container" ng-controller="treeController">
     <div class="row">
     <div class="col-sm-3" align="center">
         <br><br>
@@ -134,8 +144,6 @@
                         </thead>
 
                     </table>
-                    <div id="cat3"></div>
-
 
                     <div id="myModal" class="modal">
 
@@ -152,7 +160,6 @@
                             </div>
                         </div>
                     </div>
-                    <p id="inf"></p>
                 </div>
             </div>
 
@@ -175,11 +182,7 @@
 
         // Get the modal
         var modal = document.getElementById('myModal');
-        var inf2= document.getElementById('myModal').innerHTML;
         var inf1= document.getElementById('myModal').innerHTML;
-        inf2=inf1;
-        // Get the button that opens the modal
-        //var btn = document.getElementById("myBtn");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
@@ -202,6 +205,28 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+        }
+
+        function resCookie() {
+            lo=document.getElementById("log").value;
+            document.cookie = "login2=" + " " + ";";
+        }
+        function getCookie() {
+            var name = "login2=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    document.getElementById("ckie").innerHTML = c.substring(name.length, c.length);
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
         }
     </script>
 
