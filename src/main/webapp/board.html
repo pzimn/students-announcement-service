@@ -8,6 +8,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+    </script>
+
     <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery-3.1.0.min.js"%3E%3C/script%3E'))</script>
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.3/css/dx.spa.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.3/css/dx.common.css" />
@@ -15,84 +18,228 @@
     <script>window.angular || document.write(decodeURIComponent('%3Cscript src="js/angular.min.js"%3E%3C\/script%3E'))</script>
     <script src="https://cdn3.devexpress.com/jslib/18.1.3/js/dx.all.js"></script>
 
-    <link rel="stylesheet" type ="text/css" href ="styles/styles.css" />
-
     <script src="js/app.js"></script>
     <script src="js/treeView.js"></script>
 
     <script src="js/data.js"></script>
-</head>
-<body ng-app="DemoApp" style="background-color:powderblue;">
 
-<div class="container">
-    <div class="row">
+    <style>
+        a.a1:link{
+            background-color: slategrey;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        a.a1:hover{
+            background-color: darkslategrey;
+
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body ng-app="DemoApp" onload="getCookie();" style="background-color:#e6e6ff;">
+<div style="background-color:lightslategrey;">
+    <div class="row" >
         <div class="col-sm-3"></div>
         <div class="col-sm-6" align="middle">
             <div class="btn-group btn-group-lg" role="group" >
-                <a href="board.html" style="margin-top: 8px;" class="btn btn-info btn-block active" role="button">Ogłoszenia</a>
-                <a href="msg.html" class="btn btn-info btn-block" role="button">Wiadomości</a>
-                <a href="add.html" class="btn btn-info btn-block " role="button">Dodaj ogłoszenie</a>
+                <a class="a1" href="board.html" style="color:white; background-color: darkslategrey;">Ogłoszenia</a>
+                <a class="a1" style="color:white; " href="msg.html">Wiadomości</a>
+                <a class="a1" style="color:white; " href="add.html">Dodaj ogłoszenie</a>
             </div>
         </div>
-        <div class="col-sm-3" align="right" id="test">
+        <div class="col-sm-3" align="center" id="test">
             <form>
-                Witaj _____<br>
-
-                <a id="log" href="index.html">Wyloguj</a>
+                Witaj <l style="color:greenyellow;" id="ckie"></l><br>
+                <a id="log" onclick="resCookie()" style="color:blue;" href="index.html">Wyloguj</a>
             </form>
         </div>
     </div>
+</div>
+<div class="container" ng-controller="treeController">
     <div class="row">
+    <div class="col-sm-3" align="center">
+        <br><br>
+        <div class="row">
 
-        <div class="column">
-            <div class="demo-container" ng-controller="treeController">
-                <div class="form">
-                    <div id="simple-treeview" dx-tree-view="treeViewOptions"></div>
-                    <div id="product-details" ng-if="productDbId">
-                        <div class="name">{{productName}}</div>
-                        <div class="price">{{catId=productDbId}}</div>
+            <div class="column">
+                <div class="demo-container" >
+                    <div class="form">
+                        <div id="simple-treeview" dx-tree-view="treeViewOptions"></div>
+                        <div id="product-details" ng-if="productDbId">
+
+
+                        </div>
                     </div>
+
                 </div>
             </div>
+            </div>
         </div>
-        <div class="column">
-            <div ng-controller="UserCRUDCtrl" class="table-responsive" >
-                <table class="table table-bordered table-sm" ng-init="getAnnouncements()">
-                    <thead>
+
+        <div class="col-sm-6" align="center">
+            <br><br>
+            <div class="column">
+                <div ng-controller="UserCRUDCtrl" class="table-responsive" >
+
+                    <table class="table table-bordered table-sm" ng-init="getAnnouncements()">
+                        <thead>
                         <tr ng-init="getAllUsers()">
+
                             <th>Tytuł</th>
                             <th>Wystawiający</th>
                             <th>Cena</th>
                             <th>Średnia ocen</th>
                         </tr>
-                        <tr ng-repeat="a in announcements|filter:{'categoryId': catId}:true">
-                            <td>{{a.title}}</td>
+                        <tr ng-repeat="a in announcements|filter:{'categoryId': cat}:true">
+                            <td ng-click="getAnnouncement(a.id)" onclick="myfunction()" style="cursor:pointer; text-decoration:underline;">{{a.title}}</td>
                             <td ng-repeat="xx in users|filter:{'id': a.userId}:true">{{xx.name}} {{xx.lastname}}</td>
                             <td>{{a.price}}</td>
                             <td ng-repeat="x in users|filter:{'id': a.userId}:true">{{x.rateAvg}}</td>
+
                         </tr>
 
-                    </thead>
+                        </thead>
 
-                </table>
+                    </table>
+
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <div ng-repeat="a in announcements|filter:{'id':announcement.id}:true">
+                                <div>Tytuł: {{a.title}}</div>
+                                <div ng-repeat="xx in users|filter:{'id': a.userId}:true"> Wystawiający: {{xx.name}} {{xx.lastname}}</div>
+                                <div>Cena: {{a.price}}</div>
+                                <div ng-repeat="xx in users|filter:{'id': a.userId}:true">Ocena: {{xx.rateAvg}}</div>
+                                <div>Opis: {{a.description}}</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
+        </div>
+
+
+
+
         </div>
 
     </div>
-
-
 </div>
 
+    <script>
 
-<!--
-<div >
-    <button ng-click="getAllUsers()">Get all usrs</button><br />
-    <br /> <br />
-    <div ng-repeat="usr in users|filter:{'id': user.id}:true">
-        {{usr.name}} {{usr.lastname}} {{usr.id}}
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        var inf1= document.getElementById('myModal').innerHTML;
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+
+        // When the user clicks the button, open the modal
+        function myfunction(){
+
+            modal.style.display = "block";
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function resCookie() {
+            lo=document.getElementById("log").value;
+            document.cookie = "login2=" + " " + ";";
+        }
+        function getCookie() {
+            var name = "login2=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    document.getElementById("ckie").innerHTML = c.substring(name.length, c.length);
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+
+
+    <!--
+    <div >
+        <button ng-click="getAllUsers()">Get all usrs</button><br />
+        <br /> <br />
+        <div ng-repeat="usr in users|filter:{'id': user.id}:true">
+            {{usr.name}} {{usr.lastname}} {{usr.id}}
+        </div>
     </div>
-</div>
--->
+    -->
 
 </body>
 </html>

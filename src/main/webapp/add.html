@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html  ng-app="app" lang="en">
-<meta charset="utf-8">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="js/app.js"></script>
-
+<html lang="en">
 <head>
-    <title>Nowe ogłoszenie</title>
+    <title>Ogłoszenia</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
+
+    <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery-3.1.0.min.js"%3E%3C/script%3E'))</script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.3/css/dx.spa.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.3/css/dx.common.css" />
+    <link rel="dx-theme" data-theme="generic.light" href="https://cdn3.devexpress.com/jslib/18.1.3/css/dx.light.css" />
+    <script>window.angular || document.write(decodeURIComponent('%3Cscript src="js/angular.min.js"%3E%3C\/script%3E'))</script>
+    <script src="https://cdn3.devexpress.com/jslib/18.1.3/js/dx.all.js"></script>
+
+
+    <script src="js/app.js"></script>
+    <script src="js/treeView.js"></script>
+
+    <script src="js/data.js"></script>
     <style>
+        a.a1:link{
+            background-color: slategrey;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        a.a1:hover{
+            background-color: darkslategrey;
+
+        }
 
         br {
             line-height: 120%;
@@ -18,67 +41,115 @@
     </style>
 
 </head>
-<body ng-controller="UserCRUDCtrl" style="background-color:powderblue;">
-
-<div class="container">
-    <div class="row">
+<body ng-app="DemoApp" onload="getCookie();" style="background-color:#e6e6ff;">
+<div style="background-color:lightslategrey;">
+    <div class="row" >
         <div class="col-sm-3"></div>
-        <div class="col-sm-6" align="center">
+        <div class="col-sm-6" align="middle">
             <div class="btn-group btn-group-lg" role="group" >
-                <a href="board.html" style="margin-top: 8px;" class="btn btn-info btn-block" role="button">Ogłoszenia</a>
-                <a href="msg.html" class="btn btn-info btn-block" role="button">Wiadomości</a>
-                <a href="add.html" class="btn btn-info btn-block active" role="button">Dodaj ogłoszenie</a>
+                <a class="a1" href="board.html" style="color:white;">Ogłoszenia</a>
+                <a class="a1" style="color:white;" href="msg.html">Wiadomości</a>
+                <a class="a1" style="color:white; background-color: darkslategrey;" href="add.html">Dodaj ogłoszenie</a>
             </div>
         </div>
-        <div class="col-sm-3" align="right">
+        <div class="col-sm-3" align="center" id="test" >
             <form>
-                Witaj _____<br>
-                <a href="index.html">Wyloguj
-                </a>
+                Witaj <l style="color:greenyellow;" id="ckie"></l><br>
+                <a id="log" onclick="resCookie()" style="color:blue;" href="index.html">Wyloguj</a>
             </form>
         </div>
-
     </div>
+</div>
+
+<div class="container" ng-controller="treeController">
+
     <div class="row">
-        <div class="col-sm-4" align="right">
+        <div class="col-sm-3" align="left">
             <br><br>
-            <h3>Tytuł:</h3><br><br>
-                <h3>Kategoria:</h3><br><br>
-                    <h3>Cena:</h3><br><br>
-                        <h3>Opis:</h3><br><br>
+
+            <div class="row">
+                <h3>Kategoria:</h3><br>
+                <div class="column">
+                    <div class="demo-container" >
+                        <div class="form">
+                            <div id="simple-treeview" dx-tree-view="treeViewOptions"></div>
+                            <div id="product-details" ng-if="productDbId">
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-4" style="width: 100%;">
+
+        <div class="col-sm-1" align="right">
+            <br><br>
+            <h3>Tytuł:</h3><br><br><br>
+            <h3>Cena:</h3><br><br><br>
+            <h3>Opis:</h3><br><br>
+
+
+        </div>
+        <div class="col-sm-4" align="center" ng-controller="UserCRUDCtrl">
             <div class="text-center">
 
                 <form id="adding">
                     <div class="form-group">
                         <br><br>
                         <input type="text" class="form-control"  ng-model="title" >
+                        <input type="number" class="form-control"  ng-model="userId" ng-value="24" style="display: none;">
                         <br><br>
-                        <select class="form-control" ng-model="categoryId">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>8</option>
-                            <option>13</option>
-                        </select>
-                        <br><br>
-                        <input type="number" class="form-control" ng-model="price"><br><br>
-                        <textarea style="width: 100%; resize: none;"  rows="5" ng-model="description">
-</textarea><br><br>
-<!--<a href="add.html" class="btn btn-primary btn-block" role="button">Dodaj</a>-->
+                        <input type="number" class="form-control" ng-model="price" step="any"><br><br>
+                        <textarea style="width: 100%; resize: none;"  rows="5" ng-model="description" ng-init="getUser(2)">
+                        </textarea><br><br>
+                        <!--<a href="add.html" class="btn btn-primary btn-block" role="button">Dodaj</a>-->
                         <div>
-                        <button ng-click="addAnnouncement(title,categoryId,price,description)" class="btn btn-primary btn-block" allign="center">Dodaj</button>
-                        <p style="color: green">{{message}}</p>
-                        <p style="color: red">{{errorMessage}}</p>
-                        <br><br>
+                            <button ng-click="addAnnouncement(userId,categoryId,title,description,price)" style="background: darkslategrey;"class="btn btn-primary btn-block" allign="center">Dodaj</button>
+                            <p style="color: green">{{message}}</p>
+                            <p style="color: red">{{errorMessage}}</p>
+                            <br><br>
                         </div>
                     </div>
                 </form>
-
             </div>
+
+
         </div>
-        <div class="col-sm-4"></div>
+
     </div>
 </div>
+
+<script>
+    function setCookie() {
+        lo=document.getElementById("log").value;
+        document.cookie = "login2=" + cvalue + ";";
+    }
+    function resCookie() {
+        lo=document.getElementById("log").value;
+        document.cookie = "login2=" + " " + ";";
+    }
+    function getCookie() {
+        var name = "login2=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                document.getElementById("ckie").innerHTML = c.substring(name.length, c.length);
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+</script>
+
+
 </body>
 </html>

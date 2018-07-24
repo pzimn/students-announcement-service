@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html  ng-app="app" lang="en">
 <meta charset="utf-8">
+<script type="text/javascript" src='https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="js/app.js"></script>
 <head>
@@ -19,11 +20,13 @@
             line-height: 110%;
         }
 
-        input.ng-invalid {
-            background-color:yellow;
+        br1 {
+            line-height: 110%;
         }
-        input.ng-valid {
-            background-color:lightgreen;
+
+        select.form-control {
+            -webkit-transition: none;
+            transition: none;
         }
 
 
@@ -31,26 +34,26 @@
 
 </head>
 
-<body ng-controller="UserCRUDCtrl"  style="background-color:powderblue;">
+<body ng-controller="UserCRUDCtrl"  style="background-color: #e6e6ff;">
 
-<div class="container">
-    <div class="text-center">
-        <h1>Rejestracja</h1>
-    </div>
+<div class="text-center" style="background-color:lightslategrey;">
+    <h1>Rejestracja</h1>
 </div>
 <form name="myForm" class="form-horizontal">
 <div class="row">
     <div class="col-sm-5" align="right">
         <br><br>
 
+        <p class="pp1">Email:</p>
         <p class="pp1">Hasło:</p>
+        <p class="pp1">Powtórz hasło:</p>
         <p class="pp1">Imię:</p>
         <p class="pp1">Nazwisko:</p>
         <p class="pp1">Wykształcenie:</p>
         <p class="pp1">Uczelnia:</p>
         <p class="pp1">Wydział:</p>
         <p class="pp1">Kierunek:</p>
-        <p class="pp1">Email:</p>
+
 
     </div>
     <div class="col-sm-3">
@@ -62,32 +65,38 @@
                     <br><br>
 
                     <!--<input type="password" class="form-control" required id="pswd" value=""></br>-->
-                    <input type="password" class="form-control" ng-model="user.password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    <form name="myForm">
+                    <input name="email" type="email" style="background: #ffffb3" ng-model="user.email" class="form-control" required value=""><br>
+
+                        <ng-form name="passwordForm">
+                    <input id ="psw" name="psw"type="password" style="background: #ffffb3" class="form-control" ng-model="user.password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                            title="Hasło musi zawierać co najmniej jedną liczbę, jedną wielką i małą literę, i co najmniej 8 znaków." required>
                     </br>
+                    <input id ="psw2" style="background: #ffffb3"name="psw2" type="password" class="form-control"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                           ng-model="psw2" title="Hasło musi zgadzać się z wyżej podanym" ng-keyup="compare(psw2)" required>
+                            <span ng-show="isconfirm || passwordForm.psw2.$dirty " ng-class="{true:'green',false:'red'}[isconfirm]"></span>
+                    </br>
+                        </ng-form>
 
+                    <input name="name" style="background: #ffffb3" type="text" ng-model="user.name" class="username form-control input-sm" required ng-minlength="3"/><br>
+                    <input name="sname" style="background: #ffffb3"type="text" ng-model="user.lastname" class="form-control" required value=""><br>
 
-
-
-
-                    <input type="text" ng-model="user.name" class="username form-control input-sm" required ng-minlength="3"/><br>
-                    <input type="text" ng-model="user.lastname" class="form-control" required value=""><br>
-                    <select class="form-control" style="background-color:lightgreen;" ng-model="user.education">
+                    <select class="form-control" style="background: #ffffb3" ng-model="user.education">
                         <option>Inz.</option>
                         <option>średnie</option>
                     </select><br>
 
-                    <select class="form-control" ng-model="user.schoolId" style="background-color:lightgreen;">
-                        <option>1</option>
-                        <option>2</option>
+                    <select class="form-control" style="background: #ffffb3" ng-model="user.schoolId">
+                        <option ng-value="1">Politechnika Poznańska</option>
                     </select><br>
-                    <input type="text" ng-model="user.department" class="form-control" required value=""><br>
-                    <input type="text" ng-model="user.specialization" class="form-control" required  value=""><br>
-                    <input type="email" ng-model="user.email" class="form-control" required value=""><br>
+                    <input name="dep" style="background: #ffffb3" type="text" ng-model="user.department" class="form-control" required value=""><br>
+                    <input name="spec" style="background: #ffffb3" type="text" ng-model="user.specialization" class="form-control" required  value=""><br>
+
 
 
 
                     <br><br>
+                    </form>
                 </div>
 
 
@@ -95,7 +104,48 @@
 
         </div>
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <br><br>
+        <p class="pp1">
+            <l style="visibility: hidden;">,</l>
+            <span ng-show="myForm.email.$invalid && myForm.email.$touched" style="color:red;">&#10008</span>
+        <span ng-show="myForm.email.$valid && myForm.email.$touched" style="color:red;">&#10004</span>
+        </p>
+        <p class="pp1">
+            <l style="visibility: hidden;">,</l>
+        <span ng-show="myForm.passwordForm.psw.$invalid && myForm.passwordForm.psw.$touched" style="color:red;">&#10008</span>
+        <span ng-show="myForm.passwordForm.psw.$valid && myForm.passwordForm.psw.$touched" style="color:red;">&#10004</span>
+        </p>
+        <p class="pp1">
+            <l style="visibility: hidden;">,</l>
+            <span ng-show="myForm.passwordForm.psw2.$valid && myForm.passwordForm.psw2.$touched && isconfirm==false" style="color:red;">&#10008</span>
+        <span ng-show="myForm.passwordForm.psw2.$invalid && myForm.passwordForm.psw2.$touched && isconfirm" style="color:red;">&#10008</span>
+        <span ng-show="myForm.passwordForm.psw2.$valid && myForm.passwordForm.psw2.$touched && isconfirm" style="color:red;">&#10004</span>
+
+        </p>
+        <p class="pp1">
+            <l style="visibility: hidden;">,</l>
+        <span ng-show="myForm.name.$invalid && myForm.name.$touched" style="color:red;">&#10008</span>
+        <span ng-show="myForm.name.$valid && myForm.name.$touched" style="color:red;">&#10004</span>
+        </p>
+        <p class="pp1">
+            <l style="visibility: hidden;">,</l>
+        <span ng-show="myForm.sname.$invalid && myForm.sname.$touched" style="color:red;">&#10008</span>
+        <span ng-show="myForm.sname.$valid && myForm.sname.$touched" style="color:red;">&#10004</span>
+        </p>
+        <p class="pp1"><l style="visibility: hidden;">,</l></p>
+        <p class="pp1"><l style="visibility: hidden;">,</l></p>
+        <p class="pp1">
+            <l style="visibility: hidden;">,</l>
+        <span ng-show="myForm.dep.$invalid && myForm.dep.$touched" style="color:red;">&#10008</span>
+        <span ng-show="myForm.dep.$valid && myForm.dep.$touched" style="color:red;">&#10004</span>
+        </p>
+        <p class="pp1">
+            <l style="visibility: hidden;">,</l>
+        <span ng-show="myForm.spec.$invalid && myForm.spec.$touched" style="color:red;">&#10008</span>
+        <span ng-show="myForm.spec.$valid && myForm.spec.$touched" style="color:red;">&#10004</span>
+        </p>
+    </div>
 </div>
 
 <div class="row">
@@ -106,8 +156,9 @@
 
         <div class="form-group">
             <div class="text-center" align="center">
-                <button ng-click="addUser(user.name, user.email, user.lastname, user.password, user.education, user.schoolId, user.department, user.specialization)" class="btn btn-primary btn-block" align="center" > >Zarejestruj się </button>
+                <button style="background: darkslategrey;" ng-click="addUser(user.name, user.email, user.lastname, user.password, user.education, user.schoolId, user.department, user.specialization)" class="btn btn-primary btn-block" align="center" ng-disabled="myForm.$invalid"> Zarejestruj się </button>
                 <!--<a align="center" href="p1.html" class="btn btn-primary btn-block" role="button">Zarejestruj się</a>  ng-disabled="myForm.$invalid" -->
+                <a align="center" href="index.html" style="background: darkslategrey;" class="btn btn-primary btn-block" role="button">Powrót</a>
                 <p style="color: green">{{message}}</p>
                 <p style="color: red">{{errorMessage}}</p>
             </div>
@@ -121,6 +172,21 @@
 </div>
 
 </form>
+
+<script>
+    var model = element(by.binding('psw2'));
+    var input = element(by.id('psw2'));
+
+    it('should validate the input with the default pattern', function() {
+        input.sendKeys('aaa');
+        expect(model.getText()).not.toContain('aaa');
+
+        input.clear().then(function() {
+            input.sendKeys('123');
+            expect(model.getText()).toContain('123');
+        });
+    });
+</script>
 
 
 </body>
