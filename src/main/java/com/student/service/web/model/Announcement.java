@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -31,7 +32,7 @@ public class Announcement {
     @Column
     private String description;
 
-    @NotBlank
+    @NotNull
     @Column
     private BigDecimal price;
 
