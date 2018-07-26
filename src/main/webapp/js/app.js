@@ -6,7 +6,19 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
     $scope.test1="bbb";
     var msgs;
     $scope.timestamp = new Date().getTime() ;
-    $scope.userId='2';
+    $scope.userId=2;
+
+    $scope.ps = function () {
+        var it = document.getElementById('pass').value;
+
+        return it;
+    }
+
+    $scope.ps2 = function (ab) {
+        var it = ab;
+        $scope.userId = it;
+        return it;
+    }
 
     $scope.compare = function (repass) {
         $scope.isconfirm = $scope.user.password == repass ? true : false;
