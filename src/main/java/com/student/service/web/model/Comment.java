@@ -3,6 +3,9 @@ package com.student.service.web.model;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,13 +25,15 @@ public class Comment {
     @Column(name = "target_id")
     private int targetId;
 
-    @NotBlank
+
     @Column
     private int rate;
 
-    @NotBlank
+    //@NotBlank
     @Column
     private String content;
+    @Column
+    private Timestamp date;
 
     public int getId() {
         return id;
@@ -67,8 +72,19 @@ public class Comment {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content =content;
     }
+
+//
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date =date;
+    }
+
+
 
     @Override
     public String toString() {
@@ -78,6 +94,8 @@ public class Comment {
                 ", targetId=" + targetId +
                 ", rate=" + rate +
                 ", content='" + content + '\'' +
+                ", date='" + date + '\'' +
+
                 '}';
     }
 }

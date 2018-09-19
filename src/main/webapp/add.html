@@ -41,7 +41,7 @@
     </style>
 
 </head>
-<body ng-app="DemoApp" onload="getCookie();" style="background-color:#e6e6ff;">
+<body ng-app="DemoApp" onload="getCookie();" onload="passCookie();" style="background-color:#e6e6ff;">
 <div style="background-color:lightslategrey;">
     <div class="row" >
         <div class="col-sm-3"></div>
@@ -92,13 +92,14 @@
 
 
         </div>
-        <div class="col-sm-4" align="center" ng-controller="UserCRUDCtrl" ng-init="getAllUsers()" onload="getCookie();" onload="passCookie();" ng-init="ps()">
-            <p style="display: none;" id="pass" ng-model="passs" >{{pass2=ps()}}</p>
+        <div class="col-sm-4" align="center" ng-controller="UserCRUDCtrl" ng-init="getAllUsers()" onload="getCookie();" onload="passCookie();" >
+            <p style="display: none;" id="pass2" ng-init="ps()" ng-model="aaa"></p>
+            <p style="display: none;" id="pass"  ng-model="passs"></p>
+            <input style="display: none;" type="text" ng-bing="aaa" ng-model="abc">
             <!--<input type="text" class="form-control" id="pass" ng-model="passs">-->
-            <div ng-model="pass2">{{ps()}}</div>
-            <div style="display: none;" ng-repeat="u in users|filter:{email: pass2}:true" ng-init="cUser=u.id">
-                <p id="cUs">{{cUser}}</p>
-                <p ng-init="ps2(cUser)"></p>
+            <div  style="display: none;" ng-model="pass2"></div>
+            <div  style="display: none;" ng-repeat="u in users|filter:{email: aaa}:true">
+                <p  style="display: none;" id="cUs">{{ps2(u.id)}}</p>
             </div>
             <div class="text-center">
 
@@ -108,10 +109,12 @@
                         <input type="text" class="form-control"  ng-model="title" >
                         <br><br>
                         <input type="number" class="form-control" ng-model="price" step="any"><br><br>
+                        <!--<div class="form-control" id="pass2"></div><br><br>-->
                         <textarea style="width: 100%; resize: none;"  rows="5" ng-model="description">
                         </textarea><br><br>
                         <!--<a href="add.html" class="btn btn-primary btn-block" role="button">Dodaj</a>-->
                         <div>
+
                             <button ng-click="addAnnouncement(userId,categoryId,title,description,price)" style="background: darkslategrey;"class="btn btn-primary btn-block" allign="center">Dodaj</button>
                             <p style="color: green">{{message}}</p>
                             <p style="color: red">{{errorMessage}}</p>
@@ -130,6 +133,7 @@
 <script>
     function passCookie() {
         document.getElementById("pass").innerHTML=document.getElementById("ckie").value;
+
     }
     function setCookie() {
         lo=document.getElementById("log").value;
@@ -151,6 +155,7 @@
             }
             if (c.indexOf(name) == 0) {
                 document.getElementById("ckie").innerHTML = c.substring(name.length, c.length);
+                document.getElementById("pass2").innerHTML = c.substring(name.length, c.length);
                 return c.substring(name.length, c.length);
             }
         }

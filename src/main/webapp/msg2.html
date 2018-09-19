@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app1">
+<html lang="en" ng-app="app1" ng-controller="tableCtrl">
 <head>
     <title>Wiadomości</title>
     <meta charset="utf-8">
@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<div class="container" ng-init="getAllUsers()" ng-controller="tableCtrl">
+<div class="container" ng-init="getAllUsers()" >
     <p style="display: none;" id="pass" ng-model="passs" >{{pass2=ps()}}</p>
     <!--<input type="text" class="form-control" id="pass" ng-model="passs">-->
     <div style="display: none;" ng-model="pass2">{{ps()}}</div>
@@ -58,7 +58,7 @@
 
     <br>
     <div class="row" >
-        <div class="col-sm-6" align="right" style="border: 1px solid black;">
+        <div class="col-sm-6" align="right" style="border: 1px solid black;" >
             <div class="table-responsive" >
 
                 <table class="table table-bordered table-sm" ng-init="getAllMessages()">
@@ -88,34 +88,34 @@
 
             <div class="row" >
 
-                    <div class="table-responsive" ng-init="getAllUsers()">
-                        <l>  </l>
-                        <table class="table table-bordered table-sm" ng-init="getAllMessages()">
-                            <thead>
-                            <tr>
-                                <th colspan="4" style="text-align: center;">Archiwum wiadomości odebranych</th>
-                            </tr>
-                            <tr>
-                                <th>Nr</th>
-                                <th>Nadawca</th>
-                                <th>Treść</th>
-                                <th>Data</th>
+                <div class="table-responsive" ng-init="getAllUsers()">
+                    <l>  </l>
+                    <table class="table table-bordered table-sm" ng-init="getAllMessages()">
+                        <thead>
+                        <tr>
+                            <th colspan="4" style="text-align: center;">Archiwum wiadomości odebranych</th>
+                        </tr>
+                        <tr>
+                            <th>Nr</th>
+                            <th>Nadawca</th>
+                            <th>Treść</th>
+                            <th>Data</th>
 
-                            </tr>
-                            <tr ng-repeat="message1 in messages|filter:{recipientId: senderId}:true" ng-init="getUser(message1.recipientId)" ng-init="getAllUsers()">
-                                <td>{{$index}}</td>
-                                <td style="color:blue; cursor: pointer;" ng-click="recipient(message1.senderId)" ng-repeat="xx in users|filter:{'id': message1.senderId}:true">{{xx.lastname}}</td>
-                                <td>{{message1.content}}</td>
-                                <td>{{message1.timestamp | date:'dd-MM-yy HH:mm:ss'}}</td>
-                            </tr>
-                            </thead>
-                        </table>
+                        </tr>
+                        <tr ng-repeat="message1 in messages|filter:{recipientId: senderId}:true" ng-init="getUser(message1.recipientId)" ng-init="getAllUsers()">
+                            <td>{{$index}}</td>
+                            <td style="color:blue; cursor: pointer;" ng-click="recipient(message1.senderId)" ng-repeat="xx in users|filter:{'id': message1.senderId}:true">{{xx.lastname}}</td>
+                            <td>{{message1.content}}</td>
+                            <td>{{message1.timestamp | date:'dd-MM-yy HH:mm:ss'}}</td>
+                        </tr>
+                        </thead>
+                    </table>
 
                 </div>
-            <!--<div class="text-center">
-<textarea style="resize: none;" id="ta2" ng-model="texta" readonly rows="15" cols="40">
+                <!--<div class="text-center">
+    <textarea style="resize: none;" id="ta2" ng-model="texta" readonly rows="15" cols="40">
 
-</textarea>-->
+    </textarea>-->
 
 
             </div>
@@ -124,19 +124,24 @@
 
             <input type="hidden" ng-model="timestamp" ng-value="timestamp">
             <div id="timestamp" style="display: none;"></div>
-            <input type="hidden" ng-init="getAllUsers()" ng-model="recipientId"></br>
-            <div  style="color: sandybrown; font-size: 300%;" ng-repeat="xx in users|filter:{'id': recipientId}:true">Odbiorca: {{xx.lastname}}</div></br>
+
+            <div  style="color: sandybrown; font-size: 300%;">Odbiorca:</div>
+            <input type="hidden" ng-model="abc" type="number" onload="getCookie()" id="miig">
+            <input type="hidden" ng-init="getAllUsers()" ng-value="share(abc)" type="number" ng-model="recipientId">
+            <div style="color: sandybrown; font-size: 300%;" ng-repeat="u in users|filter:{id: recipientId}:true">{{u.lastname}}</div>
             <textarea ng-model="content" style="resize: none;" rows="1" cols="40">
                     </textarea><br>
             <button ng-click="addMsg(senderId, recipientId, timestamp, content)" style="width:307px" onClick="window.location.reload()">Wyślij</button>
-        </form></div>
+            </form></div>
     </div>
 </div>
+
 
 <script>
 
     function passCookie() {
         document.getElementById("pass").innerHTML=document.getElementById("ckie").value;
+        document.getElementById("pass2").innerHTML=document.getElementById("ckie").value;
     }
 
     function resCookie() {
@@ -159,6 +164,24 @@
                 document.getElementById("pass").value = c.substring(name.length, c.length);
             }
         }
+
+        var name2 = "mig=";
+        var decodedCookie2 = decodeURIComponent(document.cookie);
+        var ca2 = decodedCookie2.split(';');
+
+        for(var i = 0; i < ca2.length; i++) {
+            var c2 = ca2[i];
+            while (c2.charAt(0) == ' ') {
+                c2 = c2.substring(1);
+            }
+            if (c2.indexOf(name2) == 0) {
+                document.getElementById("miig").innerHTML = c.substring(name2.length, c2.length);
+                document.getElementById("miig").value = c.substring(name2.length, c2.length);
+                return c2.substring(name2.length, c2.length);
+            }
+        }
+
+
         return "";
     }
 

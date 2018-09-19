@@ -7,16 +7,47 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
     var msgs;
     $scope.timestamp = new Date().getTime() ;
     $scope.userId=2;
+    $scope.recipientId=1;
+    $scope.log="";
+    $scope.logcheck="";
+    $scope.password="";
+    $scope.pas="";
+    $scope.aaa="";
+    $scope.abc="";
+    $scope.rate=0;
+    $scope.content="";
+
 
     $scope.ps = function () {
-        var it = document.getElementById('pass').value;
-
+        var it = document.getElementById('pass2').value;
+        var it2 = document.getElementById('pass2').innerHTML;
+        $scope.abc=it;
+        $scope.aaa=it2;
         return it;
+    }
+
+    $scope.ps5 = function () {
+        var it = document.getElementById('ckie').value;
+        var it2 = document.getElementById('ckie').innerHTML;
+        $scope.abc=it;
+        $scope.aaa=it2;
+        return it;
+    }
+
+    $scope.logierror = function () {
+        $scope.loginerror = "Błąd logowania";
+    }
+
+    $scope.logi = function () {
+        $scope.logcheck = "passed";
+    }
+    $scope.logi2 = function () {
+        $scope.logcheck = "x";
     }
 
     $scope.ps2 = function (ab) {
         var it = ab;
-        $scope.userId = it;
+        $scope.userId = parseInt(it);
         return it;
     }
 
@@ -24,7 +55,11 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
         $scope.isconfirm = $scope.user.password == repass ? true : false;
     }
 
-
+    $scope.recipient = function (ab) {
+        var it = ab;
+        $scope.recipientId = parseInt(it);
+        return it;
+    }
 
     $scope.addMsg = function () {
 
@@ -56,8 +91,8 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                 });
     };
 
-    $scope.updateUser = function () {
-        UserCRUDService.updateUser($scope.user.id,$scope.user.email, $scope.user.name, $scope.user.lastname, $scope.user.password, $scope.user.education, $scope.user.schoolId, $scope.user.department, $scope.user.specialization)
+    $scope.updateUser = function (id, rate) {
+        UserCRUDService.updateUser(id, rate)
             .then(function success(response){
                     $scope.message = 'User data updated!';
                     $scope.errorMessage = '';
@@ -188,6 +223,40 @@ app.controller('UserCRUDCtrl', ['$scope','UserCRUDService', function ($scope,Use
                     $scope.errorMessage = 'Error getting anns!';
                 });
     }
+
+    $scope.getComments = function () {
+        UserCRUDService.getComments()
+            .then(function success(response){
+                    $scope.comments = response.data;
+                    $scope.message='';
+                    $scope.errorMessage = '';
+                },
+                function error (response){
+                    $scope.message='';
+                    $scope.errorMessage = '';
+                });
+    }
+
+    $scope.addComment = function (ab,bc,cd) {
+        var it = ab;
+        $scope.recipientId = parseInt(it);
+        var it2 = bc;
+        $scope.rate =parseInt(it2);
+        var it3 = cd;
+        $scope.content =it3;
+        UserCRUDService.addComment($scope.userId, $scope.recipientId, $scope.rate, $scope.content)
+            .then (function success(response){
+                    console.log("dodano komentarz");
+                    $scope.message = '';
+                    $scope.errorMessage = '';
+                },
+                function error(response){
+                    $scope.errorMessage = 'Wystąpił błąd';
+                    $scope.message = '';
+                });
+
+    };
+
 }]);
 
 app.service('UserCRUDService',['$http', function ($http) {
@@ -230,6 +299,14 @@ app.service('UserCRUDService',['$http', function ($http) {
         });
     }
 
+    this.addComment = function addComment(userId, recipientId, rate, content){
+        return $http({
+            method: 'POST',
+            url: 'api/comments',
+            data: {authorId:userId, targetId:recipientId, rate:rate, content:content, date:111111}
+        });
+    }
+
     this.deleteUser = function deleteUser(id){
         return $http({
             method: 'DELETE',
@@ -237,11 +314,11 @@ app.service('UserCRUDService',['$http', function ($http) {
         })
     }
 
-    this.updateUser = function updateUser(id, name, email, lastname, password, education, specialization,department){
+    this.updateUser = function updateUser(id, rate){
         return $http({
-            method: 'PATCH',
-            url: './api/users/'+id,
-            data: {name:name, email:email, lastname:lastname, password:password, education:education,specialization:specialization, department:department}
+            method: 'POST',
+            url: '/api/users',
+            data: {id:id,rate:rate}
         })
     }
 
@@ -259,6 +336,12 @@ app.service('UserCRUDService',['$http', function ($http) {
         });
     }
 
+    this.getComments = function getComments(){
+        return $http({
+            method: 'GET',
+            url: 'api/comments'
+        });
+    }
 
     this.getAnnouncements = function getAnnouncements(){
         return $http({

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html  ng-app="app" lang="en">
 <meta charset="utf-8">
-<script type="text/javascript" src='https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="js/app.js"></script>
 <head>
@@ -82,15 +81,41 @@
                     <input name="sname" style="background: #ffffb3"type="text" ng-model="user.lastname" class="form-control" required value=""><br>
 
                     <select class="form-control" style="background: #ffffb3" ng-model="user.education">
-                        <option>Inz.</option>
-                        <option>średnie</option>
+                        <option>Średnie</option>
+                        <option>Inżynier</option>
+                        <option>Magister</option>
                     </select><br>
+
+
 
                     <select class="form-control" style="background: #ffffb3" ng-model="user.schoolId">
                         <option ng-value="1">Politechnika Poznańska</option>
                     </select><br>
-                    <input name="dep" style="background: #ffffb3" type="text" ng-model="user.department" class="form-control" required value=""><br>
-                    <input name="spec" style="background: #ffffb3" type="text" ng-model="user.specialization" class="form-control" required  value=""><br>
+
+                        <select  class="form-control" style="background: #ffffb3" ng-model="user.department">
+                            <option ng-if="user.schoolId==1">Elektryczny</option>
+                            <option ng-if="user.schoolId==1">Informatyki</option>
+                            <option ng-if="user.schoolId==1">Budownictwa</option>
+                            <option ng-if="user.schoolId==1">Architektury</option>
+                            <option ng-if="user.schoolId==1">Budowy Maszyn i Zarządzania</option>
+                            <option ng-if="user.schoolId==1">Fizyki Technicznej</option>
+                        </select><br>
+
+                        <select  class="form-control" style="background: #ffffb3" ng-model="user.specialization">
+                            <option ng-if="user.department=='Elektryczny'">Informatyka</option>
+                            <option ng-if="user.department=='Elektryczny'">Automatyka i Robotyka</option>
+                            <option ng-if="user.department=='Elektryczny'">Elektrotechnika</option>
+                            <option ng-if="user.department=='Elektryczny'">Matematyka</option>
+                            <option ng-if="user.department=='Elektryczny'">Energetyka</option>
+                            <option ng-if="user.department=='Informatyki'">Informatyka</option>
+                            <option ng-if="user.department=='Informatyki'">Automatyka i Robotyka</option>
+                            <option ng-if="user.department=='Informatyki'">Bioinformatyka</option>
+                            <option ng-if="user.department=='Budownictwa'">Budownictwo</option>
+                        </select><br>
+
+
+                    <!--<input name="dep" style="background: #ffffb3" type="text" ng-model="user.department" class="form-control" required value=""><br>
+                    <input name="spec" style="background: #ffffb3" type="text" ng-model="user.specialization" class="form-control" required  value=""><br>-->
 
 
 
@@ -173,7 +198,7 @@
 
 </form>
 
-<script>
+<!--<script>
     var model = element(by.binding('psw2'));
     var input = element(by.id('psw2'));
 
@@ -187,7 +212,7 @@
         });
     });
 </script>
-
+-->
 
 </body>
 </html>
