@@ -145,19 +145,56 @@
 
                     </table>
 
-                    <div id="myModal" class="modal">
+                    <div id="myModal" class="modal" ng-controller="UserCRUDCtrl" >
 
                         <!-- Modal content -->
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <div ng-repeat="a in announcements|filter:{'id':announcement.id}:true">
+                            <form id="adding">
+                                <div class="form-group"ng-init="getComments(); getAllUsers();">
+                            <div ng-repeat="a in announcements|filter:{'id':announcement.id}:true" >
                                 <div>Tytuł: {{a.title}}</div>
                                 <div ng-repeat="xx in users|filter:{'id': a.userId}:true"> Wystawiający: {{xx.name}} {{xx.lastname}}</div>
                                 <div>Cena: {{a.price}}</div>
                                 <div ng-repeat="xx in users|filter:{'id': a.userId}:true">Ocena: {{xx.rateAvg}}</div>
-                                <div>Opis: {{a.description}}</div>
+                                <input type="hidden" value="{{a.userId}}" id="mg">
+                                <div>{{a.description}}</div><br><br>
+                                <a onclick="setCookie2()" class="a1" style="color:white; " href="msg2.html">Wyślij wiadomość</a><br><br>
+
+                                <div style="display: none;">{{recipient(a.userId)}}</div>
+                                <div class="col-sm-4" align="center"  onload="getCookie();" onload="passCookie();" >
+                                    <p style="display: none;" id="ckie" ng-init="ps5()" ng-model="aaa"></p>
+                                    <p style="display: none;" id="pass"  ng-model="passs"></p>
+                                    <input style="display: none;" type="text" ng-bing="aaa" ng-model="abc">
+                                    <!--<input type="text" class="form-control" id="pass" ng-model="passs">-->
+                                    <div  style="display: none;" ng-model="pass2"></div>
+                                    <div  style="display: none;" ng-repeat="u in users|filter:{email: aaa}:true">
+                                        <p  style="display: none;" id="cUs">{{ps2(u.id)}}</p>
+                                    </div>
+
+                                </div>
+                                <input style="display: none;" type="text" ng-model="userId" ng-init="">
+                                <input style="display: none;" type="number" ng-model="recipientId">
+                                <input class="form-control" ng-value="rate" ng-model="rate" type="number" step="1" max="5" min="0">
+                                <input class="form-control" type="text" ng-model="content">
+
+                                <button ng-click="addComment(recipientId,rate,content)" style="background: darkslategrey;"class="btn btn-primary btn-block" allign="center">Zatwierdź komentarz</button>
+
+                                <div ng-repeat="x in comments|filter:{'targetId': recipientId}:true">
+                                    Treść komentarza: {{x.content}}, Ocena: {{x.rate}}.
+
+                                </div>
 
                             </div>
+                                </div>
+                                    </form>
+
+
+
+
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -206,10 +243,36 @@
                 modal.style.display = "none";
             }
         }
+        function setCookie2() {
+            lo=document.getElementById("mg").value;
+            document.cookie = "mig=" + lo + ";";
+        }
+
+        function getCookie2() {
+            var name = "mig=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    document.getElementById("mg").innerHTML = c.substring(name.length, c.length);
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
 
         function resCookie() {
             lo=document.getElementById("log").value;
             document.cookie = "login2=" + " " + ";";
+        }
+        function passCookie() {
+            document.getElementById("pass").innerHTML=document.getElementById("ckie").value;
+
         }
         function getCookie() {
             var name = "login2=";
@@ -223,6 +286,7 @@
                 }
                 if (c.indexOf(name) == 0) {
                     document.getElementById("ckie").innerHTML = c.substring(name.length, c.length);
+                    //document.getElementById("pass2").innerHTML = c.substring(name.length, c.length);
                     return c.substring(name.length, c.length);
                 }
             }

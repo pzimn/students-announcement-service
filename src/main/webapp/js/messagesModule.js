@@ -18,12 +18,40 @@ app1.filter('unique', function() {
 
 app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, MessageCRUDService) {
     $scope.timestamp = new Date().getTime() ;
-    $scope.senderId='2';
-    $scope.recipientId='25';
-    $scope.passs='';
+    $scope.senderId='';
+    $scope.recipientId2='';
+    $scope.recipientId='';
+
+    $scope.recipient = function (x) {
+        $scope.recipientId = x;
+        document.getElementById('miig').value=x;
+        document.getElementById('miig').innerHTML=x;
+        $scope.recipientId.value=document.getElementById('miig').value;
+        $scope.recipientId.value=document.getElementById('miig').innerHTML;
+    }
+
+    $scope.share = function () {
+        var it = document.getElementById('miig').value;
+        $scope.recipientId=parseInt(it);
+        return it;
+    }
 
     $scope.ps = function () {
-        return $scope.passs;
+        var it = document.getElementById('pass').value;
+
+        return it;
+    }
+
+    $scope.ps3 = function (ab) {
+        var it = ab;
+        $scope.userId = it;
+        return it;
+    }
+
+    $scope.ps2 = function (ab) {
+        var it = ab;
+        $scope.senderId = it;
+        return it;
     }
 
     $scope.addMsg = function () {
@@ -46,6 +74,7 @@ app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, 
                     $scope.messages = response.data;
                     $scope.message='sukces';
                     $scope.errorMessage = 'sukces';
+
                 },
                 function error (response){
                     $scope.message='';
@@ -60,6 +89,7 @@ app1.controller('tableCtrl', ['$scope', 'MessageCRUDService', function ($scope, 
                     $scope.users = response.data;
                     $scope.message='';
                     $scope.errorMessage = '';
+
                 },
                 function error (response){
                     $scope.message='';
