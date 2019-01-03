@@ -28,7 +28,7 @@ public class User implements Serializable {
 
     @NotBlank
     @Column
-    private String lastname;
+    private String last_name;
 
     @NotBlank
     @Column
@@ -54,7 +54,7 @@ public class User implements Serializable {
     public User(String email, String name, String lastname, String password, String education, int schoolId, String department, String specialization, BigDecimal rateAvg) {
         this.email = email;
         this.name = name;
-        this.lastname = lastname;
+        this.last_name = lastname;
         this.password = password;
         this.education = education;
         this.schoolId = schoolId;
@@ -75,11 +75,11 @@ public class User implements Serializable {
     }
 
     public String getLastname() {
-        return lastname;
+        return last_name;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.last_name = lastname;
     }
 
     public String getEmail() {
@@ -152,7 +152,7 @@ public class User implements Serializable {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", lastname='" + last_name + '\'' +
                 ", password='" + password + '\'' +
                 ", education='" + education + '\'' +
                 ", schoolId=" + schoolId +

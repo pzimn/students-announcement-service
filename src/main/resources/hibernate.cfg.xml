@@ -6,9 +6,9 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL92Dialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.username">projektpz</property>
-        <property name="hibernate.connection.password">nosacz!@#$</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://vpnmalina.mooo.com:5432/pzdb</property>
+        <property name="hibernate.connection.username">Inzynierka</property>
+        <property name="hibernate.connection.password">ciesielczyk18</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://mydbinstance.cphvxr9kjvt6.us-west-2.rds.amazonaws.com:5432/inzdb</property>
 
 
 

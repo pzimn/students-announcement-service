@@ -33,7 +33,7 @@ public class Comment {
     @Column
     private String content;
     @Column
-    private Timestamp date;
+    private Timestamp timestamp;
 
     public int getId() {
         return id;
@@ -77,11 +77,11 @@ public class Comment {
 
 //
     public Timestamp getDate() {
-        return date;
+        return timestamp;
     }
 
     public void setDate(Timestamp date) {
-        this.date =date;
+        this.timestamp = timestamp;
     }
 
 
@@ -94,7 +94,7 @@ public class Comment {
                 ", targetId=" + targetId +
                 ", rate=" + rate +
                 ", content='" + content + '\'' +
-                ", date='" + date + '\'' +
+                ", date='" + timestamp + '\'' +
 
                 '}';
     }

@@ -1,104 +1,75 @@
 <!DOCTYPE html>
-<html  ng-app="app" lang="en">
-<meta charset="utf-8">
+<html>
+<meta charset="UTF-8">
+<body>
+<div ng-app="client">
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="js/app.js"></script>
-<head>
-    <title>Strona główna</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles/stylesheet.css">
 
-</head>
-<body ng-controller="UserCRUDCtrl" style="background-color:#e6e6ff;">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Students announcement service</a>
+        </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
 
-<div class="container">
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Wyszukaj ogłoszenie! </button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Zaloguj sie!</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dodaj ogłoszenie </a></li>
+                        <li><a href="#">Strona główna </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Twój profil </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="text-center " style="margin-top: 15%; margin-bottom: auto">
     <div class="row">
 
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <div class="text-center" >
-
-                <form>
-
-                    <div class="form-group">
-                        <br>
-                        <h2><label for="log">Login:</label></h2>
-                        <input type="text" class="form-control"  id="log" value="" ng-model="log" ng-change="logi2()">
-                    </div>
-
-                    <div class="form-group" >
-                        <h2><label for="passwd">Hasło:</label></h2>
-                        <input type="password" class="form-control"  id="passwd" value="" ng-model="password" ng-change="logi2()">
-                    </div><br>
-                    <!--<a onclick="setCookie()" class="btn btn-primary btn-block" role="button"style="background: darkslategrey;">Zaloguj się</a><br>-->
-
-                </form>
-                <div ng-init="getAllUsers()"></div>
-
-                <a ng-if="logcheck!='passed'" ng-click="logierror()" class="btn btn-primary btn-block" role="button"style="background: darkslategrey; color: #fefefe;">Zaloguj się</a>
-                <a ng-if="logcheck=='passed'" href="board.html" onclick="setCookie()" class="btn btn-primary btn-block" role="button"style="background: darkslategrey; color: #fefefe;">Zaloguj się</a>
-
-                <p ng-repeat="xx in users|filter:{email: log,password: password}:true" ng-model="pas" style="display: none;" >
-                    {{logi()}}
-                </p>
-
-
-
-
-                <!--<span ng-if="password=pas">Added</span>-->
-                <p class="text-center" >Jeżeli nie posiadasz konta,<br>
-                    <a id="l1" href="register.html">ZAREJESTRUJ SIĘ</a>
-                </p><br><br>
-                <h2 ng-bind="loginerror" style="color: red;"></h2>
-
+        <div class="row"></div>
+        <div class="col-md-6">
+            <img  src="icons/blackboard.png" style="max-width:30%; margin-left:25%; height:auto " class="img-fluid" alt="Responsive image">
+            <div style="margin-left:25%;">
+                <a href="#" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-search"></span> Szukam korepetycji</a>
             </div>
         </div>
+
+        <div class="col-md-6" >
+            <img src="icons/books-stack-of-three.png" style="max-width:30%; height:auto; margin-right: 25% " class="img-fluid" alt="Responsive image">
+        <div>
+            <a href="#" class="btn btn-lg btn-primary" style="margin-right:25%;"><span class="glyphicon glyphicon-search"></span> Szukam przedmiotów</a>
+        </div>
+
+        </div>
     </div>
-
-
 </div>
 
-
-<script>
-
-    function setCookie() {
-        lo=document.getElementById("log").value;
-        document.cookie = "login2=" + lo + ";";
-    }
-
-
-
-    function getCookie() {
-        var name = "login2=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-
-    function checkCookie() {
-        var user=getCookie("username");
-        if (user != "") {
-            alert("Welcome again " + user);
-        } else {
-            user = prompt("Please enter your name:","");
-            if (user != "" && user != null) {
-                setCookie("username", user, 30);
-            }
-        }
-    }
-
-</script>
-
+</div>
 </body>
 </html>
