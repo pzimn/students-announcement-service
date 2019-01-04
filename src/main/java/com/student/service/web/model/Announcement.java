@@ -31,7 +31,6 @@ public class Announcement {
     @Column
     private String description;
 
-    @NotBlank
     @Column
     private BigDecimal price;
 
