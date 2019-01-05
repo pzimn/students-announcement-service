@@ -1,4 +1,4 @@
-var app = angular.module("app", ["ui.bootstrap","ngRoute"]);
+var app = angular.module('app', ['ui.bootstrap','ngRoute', 'dx']);
 
 app.controller('MainController', MainController );
 var MainController = function($scope){

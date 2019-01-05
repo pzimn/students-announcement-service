@@ -62,7 +62,6 @@ app.controller('ModalContentCtrl', function($scope, $uibModalInstance, categoryS
         items: products,
         width: 300,
         searchEnabled: true,
-        noDataText: "Brak danych",
 
         onItemClick: function(e) {
             var item = e.itemData;
