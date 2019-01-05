@@ -21,7 +21,7 @@ app.controller('addController', ['$scope', '$uibModal', 'categoryService', 'User
 
     $scope.open = function() {
         var modalInstance =  $uibModal.open({
-            templateUrl: "modalContent.html",
+            templateUrl: "components/modalContent.html",
             controller: "ModalContentCtrl",
             size: '',
         });
