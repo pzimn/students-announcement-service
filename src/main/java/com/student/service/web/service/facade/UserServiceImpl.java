@@ -51,4 +51,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    public boolean userExists(User user) { return userRepository.findByName(user.getName()) != null; }
+
 }
