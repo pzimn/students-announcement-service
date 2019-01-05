@@ -1,5 +1,9 @@
-var app = angular.module("myApp", ["ngRoute"]);
+var app = angular.module("app", ["ui.bootstrap","ngRoute"]);
 
+app.controller('MainController', MainController );
+var MainController = function($scope){
+    $scope.val = "Main controller variable value"
+};
 
 app.directive("navbarBootstrap", function() {
     return {
