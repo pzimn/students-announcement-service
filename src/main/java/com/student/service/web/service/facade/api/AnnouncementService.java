@@ -18,4 +18,7 @@ public interface AnnouncementService {
 
     List<Announcement> findAll();
 
+    List<Announcement> findAllWithGivenCategory(Integer catId);
+
+    List<Announcement> findAllDownParentCategory(Integer catId);
 }

@@ -21,11 +21,10 @@ app.controller('addController', ['$scope', '$uibModal', 'categoryService', 'User
 
     $scope.open = function() {
         var modalInstance =  $uibModal.open({
-            templateUrl: "components/modalContent.html",
+            templateUrl: "././components/modalContent.html",
             controller: "ModalContentCtrl",
             size: '',
         });
-
         modalInstance.result.then(function(response){
             // noinspection JSAnnotator
             //$scope.result = `${response} button hitted`;
@@ -50,7 +49,7 @@ app.controller('addController', ['$scope', '$uibModal', 'categoryService', 'User
                 });
 
     };
-}])
+}]);
 
 app.controller('ModalContentCtrl', function($scope, $uibModalInstance, categoryService) {
 

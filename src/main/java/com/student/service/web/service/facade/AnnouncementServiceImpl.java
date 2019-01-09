@@ -46,4 +46,14 @@ public class AnnouncementServiceImpl implements AnnouncementService {
         return announcementRepository.findAll();
     }
 
+    @Override
+    public List<Announcement> findAllWithGivenCategory(Integer catId) {
+        return announcementRepository.findAllWithId(catId);
+    };
+
+    @Override
+    public List<Announcement> findAllDownParentCategory(Integer parentCatId) {
+        return announcementRepository.findAllDownParentCategory(parentCatId);
+    };
+
 }

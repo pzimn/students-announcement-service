@@ -1,37 +1,13 @@
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link data-require="bootstrap-css@3.*" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
-
-<link rel="stylesheet" href="styles/stylesheet.css">
-<link rel="stylesheet" href="styles/dx.light.css">
-<link rel="stylesheet" href="styles/dx.common.css">
-
-<script src="js/lib/angular.js"></script>
-<script src="js/lib/angular-route.js"></script>
-<script src="js/app.js"></script>
-
-<script data-require="angular.js@1.6.5" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-<script data-require="angular-animate@1.6.*" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
-<script data-require="angular-touch@1.6.*" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-touch.js"></script>
-<script data-require="ui-bootstrap@*" data-semver="2.5.0" src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
-
-<script src="https://cdn3.devexpress.com/jslib/18.2.4/js/dx.all.js"></script>
-
+<script src="/dest/index.min.js"></script>
+<link rel="stylesheet" href="/dest/styles.min.css">
 <body ng-app="app">
 <div ng-view></div>
-
 <navbar-bootstrap></navbar-bootstrap>
-
 <div class="text-center " style="margin-top: 15%; margin-bottom: auto">
     <div class="row">
-
         <div class="row"></div>
         <div class="col-md-6">
             <img  src="icons/blackboard.png" style="max-width:30%; margin-left:25%; height:auto " class="img-fluid" alt="Responsive image">
@@ -39,16 +15,13 @@
                 <a href="/lessons.html" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-search"></span> Szukam korepetycji</a>
             </div>
         </div>
-
         <div class="col-md-6" >
             <img src="icons/books-stack-of-three.png" style="max-width:30%; height:auto; margin-right: 25% " class="img-fluid" alt="Responsive image">
             <div>
                 <a href="/market.html" class="btn btn-lg btn-primary" style="margin-right:25%;"><span class="glyphicon glyphicon-search"></span> Szukam przedmiotów</a>
             </div>
-
         </div>
     </div>
 </div>
-
 </body>
 </html>

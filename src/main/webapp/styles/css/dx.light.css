@@ -1348,7 +1348,7 @@
 }
 @font-face {
   font-family: 'DXIcons';
-  src: local("DevExtreme Generic Icons"), local("devextreme_generic_icons"), url(icons/dxicons.woff2) format('woff2'), url(icons/dxicons.woff) format('woff'), url(icons/dxicons.ttf) format('truetype');
+  src: local("DevExtreme Generic Icons"), local("devextreme_generic_icons"), url(../icons/dxicons.woff2) format('woff2'), url(../icons/dxicons.woff) format('woff'), url(../icons/dxicons.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }

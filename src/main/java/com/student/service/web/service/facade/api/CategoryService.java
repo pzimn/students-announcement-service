@@ -19,4 +19,5 @@ public interface CategoryService {
     void deleteAll();
 
     List<Category> findAll();
+
 }
