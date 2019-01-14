@@ -5,23 +5,23 @@
 	<script src="/dest/index.min.js"></script>
     <link rel="stylesheet" href="/dest/styles.min.css">
     <title>Zaloguj się</title>
+    <link rel="stylesheet" href="/styles/css/custom.css">
 </head>
 
 <body class="text-center login" ng-app=app>
 <form class="form-signin">
     <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
+    <h1 class="h3 mb-3 font-weight-normal text-primary">Zaloguj się</h1>
     <label for="inputEmail" class="sr-only">Adres email</label>
     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
     <label for="inputPassword" class="sr-only">hasło</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="remember-me"> Pamiętaj mnie
+            <input type="checkbox" value="remember-me"> <span class="text-primary">Pamiętaj mnie</span>
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 </form>
 
 </body>

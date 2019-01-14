@@ -1,0 +1,50 @@
+#home {
+    min-height: 100vh;
+    transform: translateY(-56px);
+    display: flex;
+}
+
+body {
+    background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('../../icons/430376-PE5X2A-39.jpg');
+    background-size: cover;
+}
+
+nav {
+    z-index: 10;
+}
+
+.btn-primary {
+    border-color: #004e45 !important;
+    background-color: #4edecd !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    border-color: #004e45 !important;
+    background-color: #37a296 !important;
+    color: #fff !important;
+}
+
+.btn-warning {
+    border-color: #004e45 !important;
+    
+    color: #fff !important;
+}
+
+.btn-warning:hover {
+    border-color: #004e45 !important;
+    
+    color: #fff !important;
+}
+
+.border-primary {
+    border-color: #004e45 !important;
+}
+
+.text-primary {
+    color: #ffffff !important;
+}
+
+.page-link {
+    color: #37a296 !important;
+}
