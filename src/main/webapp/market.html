@@ -1,15 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<script src="/dest/index.min.js"></script>
-<link rel="stylesheet" href="/dest/styles.min.css">
-<link rel="stylesheet" href="/styles/css/custom.css">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Wyszukaj interesujące przedmioty </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Korepetycje </title>
+    <script src="/dest/index.min.js"></script>
+    <script src="js/application/app.js"></script>
+    <script src="js/controllers/addController.js"></script>
+    <link rel="stylesheet" href="/dest/styles.min.css">
+    <link rel="stylesheet" href="styles/css/dx.light.css">
+    <link rel="stylesheet" href="/styles/css/custom.css">
 </head>
-<body ng-app="app">
-
+<body ng-app="app" ng-controller="addController" ng-init="setDefaultValues()">
 <navbar-bootstrap></navbar-bootstrap>
+<div class="container">
+    <div class="container mt-4 mb-4">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-4 text-primary">Ogłoszenia</h1>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron " >
+        <nav aria-label="Page navigation example">
+            <button type="button" class="btn btn-primary mr-4" ng-click="open()">Wybierz kategorię</button><span>Wybrana kategoria: {{categoryName}}</span><br><br>
+            <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Poprzednie</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Następne</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="row">
+            <div class="card-deck">
+                <div class="col-sm-6 col-md-12 col-lg-12 mt-2">
+                    <div class="card border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <b>Tytuł Ogłoszenia</b></h3>
+                                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel itaque dolorem architecto quidem et. Illo amet dolores beatae, commodi natus sit odio officia maxime reprehenderit, adipisci non exercitationem molestiae quidem.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Cena:</strong> 50zł / h
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Korepetytor: </strong> Anna
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Uczelnia: </strong> Politechnika Poznańska
+                            </li>
+                            <li class="list-group-item text-center">
+                                <a href="#" class="btn btn-primary">Przejdź do ogłoszenia</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-12 col-lg-12 mt-2 ">
+                    <div class="card border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Tytuł Ogłoszenia</h3>
+                                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel itaque dolorem architecto quidem et. Illo amet dolores beatae, commodi natus sit odio officia maxime reprehenderit, adipisci non exercitationem molestiae quidem.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Cena:</strong> 50zł / h
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Korepetytor: </strong> Anna
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Uczelnia: </strong> Politechnika Poznańska
+                            </li>
+                            <li class="list-group-item text-center">
+                                <a href="#" class="btn btn-primary">Przejdź do ogłoszenia</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-12 col-lg-12 mt-2">
+                    <div class="card border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Tytuł Ogłoszenia</h3>
+                                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel itaque dolorem architecto quidem et. Illo amet dolores beatae, commodi natus sit odio officia maxime reprehenderit, adipisci non exercitationem molestiae quidem.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Cena:</strong> 50zł / h
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Korepetytor: </strong> Anna
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Uczelnia: </strong> Politechnika Poznańska
+                            </li>
+                            <li class="list-group-item text-center">
+                                <a href="#" class="btn btn-primary">Przejdź do ogłoszenia</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

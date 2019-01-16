@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface AnnouncementRepository extends JpaRepository<Announcement, Integer> {
 
-    @Query("SELECT a FROM Announcements a WHERE a.category_id = :id")
+    @Query("SELECT a FROM Announcement a WHERE a.categoryId = :id")
     public List<Announcement> findAllWithId(@Param("id") Integer id);
 
-    @Query("SELECT a FROM Announcements a WHERE a.category_id <= :id")
+    @Query("SELECT a FROM Announcement a WHERE a.categoryId <= :id")
     public List<Announcement> findAllDownParentCategory(@Param("id") Integer id);
 }
