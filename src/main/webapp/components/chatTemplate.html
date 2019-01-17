@@ -1,0 +1,42 @@
+<div ng-show="visible" class="row chat-window col-12 {{vm.theme}}"
+     ng-class="{minimized: vm.isHidden}">
+    <div class="col-12 col-lg-12">
+        <div class="panel">
+            <div class="card-header chat-top-bar">
+                <div class="col-lg-8 col-8">
+                    <h3 class="card-title"><span class="fa fa-comment-o"></span> {{vm.title}}</h3>
+                </div>
+                <div class="col-4 window-actions" style="text-align: right;"> <span class="fa" ng-class="vm.chatButtonClass" ng-click="vm.toggle()"></span>
+                    <span
+                            class="fa fa-close" ng-click="vm.close()"></span>
+                </div>
+            </div>
+            <div class="card-body msg-container-base" ng-style="vm.panelStyle">
+                <div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">
+                    <div class="col-lg-12 col-12">
+                        <div class="chat-msg" ng-class="{&apos;chat-msg-sent&apos;: selfAuthored, &apos;chat-msg-recieved&apos;: !selfAuthored}">
+                            <img ng-if="message.imageUrl"
+                                 class="profile" ng-class="{&apos;float-right&apos;: selfAuthored, &apos;float-left&apos;: !selfAuthored}"
+                                 ng-src="{{message.imageUrl}}">
+                            <p>{{message.content}}</p>
+                            <div class="chat-msg-author"> <strong>{{message.username}}</strong>&#xA0; <span class="date">{{message.date|date:hh:mm:a}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer chat-bottom-bar">
+                <form style="display:inherit" ng-submit="vm.submitFunction()">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-sm chat-input" placeholder="{{vm.inputPlaceholderText}}"
+                               ng-model="vm.writingMessage"> <span class="input-group-btn">
+
+                            <input type="submit" class="btn btn-sm chat-submit-button" value="{{vm.submitButtonText}}">
+
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

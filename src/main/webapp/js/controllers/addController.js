@@ -2,13 +2,13 @@ app.controller('addController', ['$scope', '$uibModal', 'categoryService', 'User
     $scope.error_message = "";
     $scope.userId = 0;
     $scope.categoryId = 0;
-    $scope.categoryName = "BRAK";
+    $scope.categoryName = "nie wybrano";
 
     $scope.setDefaultValues = function () {
-        $scope.addTitle = "tytuł";
+        $scope.addTitle = "Proszę podać tytuł ogłoszenia";
         $scope.addCategory = 3;
         $scope.addPrice = 0;
-        $scope.addDescription = "opis";
+        $scope.addDescription = "Proszę wpisać opis ogłoszenia";
     }
 
     $scope.addAnnouncement = function () {
@@ -16,7 +16,6 @@ app.controller('addController', ['$scope', '$uibModal', 'categoryService', 'User
         var category = $scope.addCategory;
         var price = $scope.addPrice;
         var description = $scope.addDescription;
-        $scope.error_message = title;
     }
 
     $scope.open = function() {
@@ -40,12 +39,12 @@ app.controller('addController', ['$scope', '$uibModal', 'categoryService', 'User
         UserCRUDService.addAnnouncement($scope.userId, $scope.categoryId, $scope.addTitle, $scope.addDescription, $scope.addPrice)
             .then (function success(response){
                     console.log("Dodano ogloszenie");
-                    $window.location.href = "added.html";;
+					$scope.error_message = "Dodawanie ogłoszenia";
+                    $window.location.href = "added.html";
                 },
                 function error(response){
                     console.log("Nie udało się dodać ogłoszenia!");
-                    $scope.errorMessage = 'Wystąpił błąd podczas dodawania ogłoszenia!';
-                    $scope.message = '';
+                    $scope.error_message = 'Wystąpił błąd podczas dodawania ogłoszenia!';
                 });
 
     };

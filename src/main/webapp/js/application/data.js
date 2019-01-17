@@ -5,7 +5,7 @@ var products = [{
     db_id: 1,
     items: [{
         id: "1_1",
-        text: "Podręczniki",
+        text: "Literatura",
         expanded: false,
         db_id: 3,
         items: []

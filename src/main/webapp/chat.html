@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<script src="/dest/index.min.js"></script>
+<link rel="stylesheet" href="/dest/styles.min.css">
+<link rel="stylesheet" href="/styles/css/custom.css">
+
+
+<script src="js/application/chatApp.js"></script>
+
+<script src="js/controllers/chatController.js"></script>
+
+
+<!-- Simple Chat -->
+<link rel="stylesheet" href="styles/css/simple-chat-styles.css">
+<link rel="stylesheet" href="styles/css/simple-chat-themes.css">
+<script src="js/lib/simple-chat-index.js"></script>
+<script src="js/application/chatTemplate.js"></script>
+<script src="js/lib/lodash.js"></script>
+
+<head>
+</head>
+<body>
+<div ng-app="chatApp">
+<navbar-bootstrap></navbar-bootstrap>
+
+    <div ng-controller="Shell as vm" ng-init="setDefaultValues()" style="margin-top: 5%; margin-bottom: auto">
+        <div class="row">
+
+            <div class="row"></div>
+
+
+            <div class="col-4"></div>
+
+            <div class="col-4">
+                <div style="display: block;" class="chat-container">
+                    <irontec-simple-chat
+                            messages="vm.messages"
+                            username="vm.username"
+                            input-placeholder-text="Treść..."
+                            submit-button-text="Wyślij"
+                            title="Wiadomości"
+                            theme="material"
+                            submit-function="vm.sendMessage"
+                            visible="true">
+                    </irontec-simple-chat>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

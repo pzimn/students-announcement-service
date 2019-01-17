@@ -14,6 +14,6 @@ public interface AnnouncementRepository extends JpaRepository<Announcement, Inte
     @Query("SELECT a FROM Announcement a WHERE a.categoryId = :id")
     public List<Announcement> findAllWithId(@Param("id") Integer id);
 
-    @Query("SELECT a FROM Announcement a WHERE a.categoryId <= :id")
+    @Query("SELECT a FROM Announcement a WHERE a.categoryId IN (SELECT b.id FROM Category b WHERE b.parentCategoryId= :id OR b.id= :id)")
     public List<Announcement> findAllDownParentCategory(@Param("id") Integer id);
 }

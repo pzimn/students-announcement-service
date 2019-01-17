@@ -33,8 +33,8 @@ public class AnnouncementController {
 
     // Get a Single Announcement
     @GetMapping("/announcements/{id}")
-    public Announcement getAnnouncementById(@PathVariable(value = "id") Integer announcementId) {
-        Announcement announcement = announcementService.findOne(announcementId);
+    public List<Announcement> getAnnouncementById(@PathVariable(value = "id") Integer announcementId) {
+        List<Announcement> announcement = announcementService.findAllDownParentCategory(announcementId);
         logger.info("Retrieved user from DB: {}. ",announcement);
         return announcement;
     }
