@@ -1,22 +1,13 @@
 package com.student.service.web.service.facade.api;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
 import com.student.service.web.model.User;
 
-import java.util.List;
+@Service
+public interface UserService extends JpaRepository<User, Integer> {
 
-public interface UserService {
+	public User findByUsername(String name);
 
-    User findOne(Integer id);
-
-    User findByName(String name);
-
-    User save(User user);
-
-    void update(User user);
-
-    void deleteById(Integer id);
-
-    void deleteAll();
-
-    List<User> findAll();
 }

@@ -1,20 +1,13 @@
 package com.student.service.web.service.facade.api;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
 import com.student.service.web.model.Message;
 
-import java.util.List;
-
-public interface MessageService {
-
-    Message findOne(Integer id);
-
-    Message save(Message message);
-
-    void update(Message message);
+@Service
+public interface MessageService extends JpaRepository<Message, Integer>{
 
     void deleteById(Integer id);
 
-    void deleteAll();
-
-    List<Message> findAll();
 }

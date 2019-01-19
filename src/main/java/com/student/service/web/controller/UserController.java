@@ -21,11 +21,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/login")
-    public boolean login(@RequestBody User user) {
-        return
-                user.getName().equals("user") && user.getPassword().equals("password");
-    }
 
     @RequestMapping("/user")
     public Principal user(HttpServletRequest request) {
@@ -69,7 +64,6 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable("id") Integer userId) {
         logger.info("Deleting user from DB with ID: {}. ", userId);
-        userService.deleteById(userId);
     }
 
 }

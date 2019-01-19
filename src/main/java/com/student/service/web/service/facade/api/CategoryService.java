@@ -1,23 +1,14 @@
 package com.student.service.web.service.facade.api;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.student.service.web.model.Category;
 
-import java.util.List;
-
-public interface CategoryService {
-
-    Category findOne(Integer id);
+public interface CategoryService extends JpaRepository<Category, Integer>{
 
     Category findByName(String name);
 
-    Category save(Category category);
-
-    void update(Category category);
-
     void deleteById(Integer id);
 
-    void deleteAll();
-
-    List<Category> findAll();
 
 }

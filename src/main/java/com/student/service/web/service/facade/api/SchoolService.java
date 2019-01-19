@@ -4,20 +4,13 @@ import com.student.service.web.model.School;
 
 import java.util.List;
 
-public interface SchoolService {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
-    School findOne(Integer id);
+@Service
+public interface SchoolService extends JpaRepository<School, Integer>{
 
     School findByName(String name);
-
-    School save(School school);
-
-    void update(School school);
-
     void deleteById(Integer id);
-
-    void deleteAll();
-
-    List<School> findAll();
 }
 
