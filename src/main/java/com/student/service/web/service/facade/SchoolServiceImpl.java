@@ -8,32 +8,32 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.student.service.web.model.User;
-import com.student.service.web.service.facade.api.UserService;
+import com.student.service.web.model.School;
+import com.student.service.web.service.facade.api.SchoolService;
 
 @Repository
-public class UserRepository implements UserService {
+public class SchoolServiceImpl implements SchoolService {
 
 	@Override
-	public List<User> findAll() {
+	public List<School> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<User> findAll(Sort sort) {
+	public List<School> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<User> findAll(Iterable<Integer> ids) {
+	public List<School> findAll(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends User> List<S> save(Iterable<S> entities) {
+	public <S extends School> List<S> save(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,13 +45,13 @@ public class UserRepository implements UserService {
 	}
 
 	@Override
-	public <S extends User> S saveAndFlush(S entity) {
+	public <S extends School> S saveAndFlush(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<User> entities) {
+	public void deleteInBatch(Iterable<School> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -63,37 +63,37 @@ public class UserRepository implements UserService {
 	}
 
 	@Override
-	public User getOne(Integer id) {
+	public School getOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends User> List<S> findAll(Example<S> example) {
+	public <S extends School> List<S> findAll(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends User> List<S> findAll(Example<S> example, Sort sort) {
+	public <S extends School> List<S> findAll(Example<S> example, Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<User> findAll(Pageable pageable) {
+	public Page<School> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends User> S save(S entity) {
+	public <S extends School> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User findOne(Integer id) {
+	public School findOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -117,13 +117,13 @@ public class UserRepository implements UserService {
 	}
 
 	@Override
-	public void delete(User entity) {
+	public void delete(School entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Iterable<? extends User> entities) {
+	public void delete(Iterable<? extends School> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -135,33 +135,39 @@ public class UserRepository implements UserService {
 	}
 
 	@Override
-	public <S extends User> S findOne(Example<S> example) {
+	public <S extends School> S findOne(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends User> Page<S> findAll(Example<S> example, Pageable pageable) {
+	public <S extends School> Page<S> findAll(Example<S> example, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends User> long count(Example<S> example) {
+	public <S extends School> long count(Example<S> example) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public <S extends User> boolean exists(Example<S> example) {
+	public <S extends School> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public User findByUsername(String name) {
+	public School findByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

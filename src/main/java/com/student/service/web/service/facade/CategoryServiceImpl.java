@@ -8,32 +8,32 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.student.service.web.model.School;
-import com.student.service.web.service.facade.api.SchoolService;
+import com.student.service.web.model.Category;
+import com.student.service.web.service.facade.api.CategoryService;
 
 @Repository
-public class SchoolRepository implements SchoolService {
+public class CategoryServiceImpl implements CategoryService {
 
 	@Override
-	public List<School> findAll() {
+	public List<Category> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<School> findAll(Sort sort) {
+	public List<Category> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<School> findAll(Iterable<Integer> ids) {
+	public List<Category> findAll(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends School> List<S> save(Iterable<S> entities) {
+	public <S extends Category> List<S> save(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -41,59 +41,59 @@ public class SchoolRepository implements SchoolService {
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public <S extends School> S saveAndFlush(S entity) {
+	public <S extends Category> S saveAndFlush(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<School> entities) {
+	public void deleteInBatch(Iterable<Category> entities) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAllInBatch() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public School getOne(Integer id) {
+	public Category getOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends School> List<S> findAll(Example<S> example) {
+	public <S extends Category> List<S> findAll(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends School> List<S> findAll(Example<S> example, Sort sort) {
+	public <S extends Category> List<S> findAll(Example<S> example, Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<School> findAll(Pageable pageable) {
+	public Page<Category> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends School> S save(S entity) {
+	public <S extends Category> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public School findOne(Integer id) {
+	public Category findOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -113,53 +113,53 @@ public class SchoolRepository implements SchoolService {
 	@Override
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void delete(School entity) {
+	public void delete(Category entity) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void delete(Iterable<? extends School> entities) {
+	public void delete(Iterable<? extends Category> entities) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public <S extends School> S findOne(Example<S> example) {
+	public <S extends Category> S findOne(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends School> Page<S> findAll(Example<S> example, Pageable pageable) {
+	public <S extends Category> Page<S> findAll(Example<S> example, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends School> long count(Example<S> example) {
+	public <S extends Category> long count(Example<S> example) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public <S extends School> boolean exists(Example<S> example) {
+	public <S extends Category> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public School findByName(String name) {
+	public Category findByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -167,8 +167,7 @@ public class SchoolRepository implements SchoolService {
 	@Override
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 }

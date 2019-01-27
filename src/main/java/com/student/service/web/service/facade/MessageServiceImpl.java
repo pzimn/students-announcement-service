@@ -8,32 +8,32 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.student.service.web.model.Comment;
-import com.student.service.web.service.facade.api.CommentService;
+import com.student.service.web.model.Message;
+import com.student.service.web.service.facade.api.MessageService;
 
 @Repository
-public class CommentRepository implements CommentService {
+public class MessageServiceImpl implements MessageService {
 
 	@Override
-	public List<Comment> findAll() {
+	public List<Message> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Comment> findAll(Sort sort) {
+	public List<Message> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Comment> findAll(Iterable<Integer> ids) {
+	public List<Message> findAll(Iterable<Integer> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Comment> List<S> save(Iterable<S> entities) {
+	public <S extends Message> List<S> save(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,13 +45,13 @@ public class CommentRepository implements CommentService {
 	}
 
 	@Override
-	public <S extends Comment> S saveAndFlush(S entity) {
+	public <S extends Message> S saveAndFlush(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<Comment> entities) {
+	public void deleteInBatch(Iterable<Message> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -63,61 +63,31 @@ public class CommentRepository implements CommentService {
 	}
 
 	@Override
-	public Comment getOne(Integer id) {
+	public Message getOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Comment> List<S> findAll(Example<S> example) {
+	public <S extends Message> List<S> findAll(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Comment> List<S> findAll(Example<S> example, Sort sort) {
+	public <S extends Message> List<S> findAll(Example<S> example, Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Comment> S findOne(Example<S> example) {
+	public <S extends Message> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Comment> Page<S> findAll(Example<S> example, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends Comment> long count(Example<S> example) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public <S extends Comment> boolean exists(Example<S> example) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Page<Comment> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends Comment> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Comment findOne(Integer id) {
+	public Message findOne(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -141,13 +111,13 @@ public class CommentRepository implements CommentService {
 	}
 
 	@Override
-	public void delete(Comment entity) {
+	public void delete(Message entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Iterable<? extends Comment> entities) {
+	public void delete(Iterable<? extends Message> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -159,8 +129,39 @@ public class CommentRepository implements CommentService {
 	}
 
 	@Override
+	public <S extends Message> S findOne(Example<S> example) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <S extends Message> Page<S> findAll(Example<S> example, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <S extends Message> long count(Example<S> example) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public <S extends Message> boolean exists(Example<S> example) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Page<Message> findAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

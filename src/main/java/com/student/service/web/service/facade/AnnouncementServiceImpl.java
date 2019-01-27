@@ -8,7 +8,7 @@ import com.student.service.web.model.Announcement;
 import com.student.service.web.service.facade.api.AnnouncementService;
 
 @Repository
-public class AnnouncementRepository implements AnnouncementService {
+public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Override
 	public Announcement findOne(Integer id) {
