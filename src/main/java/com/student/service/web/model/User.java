@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -18,6 +19,7 @@ public class User {
 	public static final String ROLE_USER = "ROLE_USER";
 	public static final String ROLE_ADMIN = "ROLE_ADMIN";
 	public static final String ROLE_MODERATOR = "ROLE_MODERATOR";
+	public static final String PASSWORD_PATTERN = "((\\S){6,15})";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,13 +55,15 @@ public class User {
     private int schoolId;
 
     @Column
+    @NotNull
     private String department;
 
     @Column
+    @NotNull
     private String specialization;
 
     @Column(name = "rate_avg")
-    private BigDecimal rateAvg;
+    private double rateAvg;
     
     @Column
 	private String role = ROLE_USER;
@@ -131,11 +135,11 @@ public class User {
 		this.specialization = specialization;
 	}
 
-	public BigDecimal getRateAvg() {
+	public double getRateAvg() {
 		return rateAvg;
 	}
 
-	public void setRateAvg(BigDecimal rateAvg) {
+	public void setRateAvg(double rateAvg) {
 		this.rateAvg = rateAvg;
 	}
 

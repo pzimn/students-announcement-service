@@ -9,5 +9,6 @@ import com.student.service.web.model.User;
 public interface UserService extends JpaRepository<User, Integer> {
 
 	public User findByUsername(String name);
+	public User findByEmail(String email);
 
 }
