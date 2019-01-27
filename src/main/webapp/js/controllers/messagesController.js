@@ -15,7 +15,7 @@ messagesApp.controller('messagesCtrl', function($scope, $http) {
         },
         {
             "name": "Mariusz",
-            "lastname": "Lambarski",
+            "lastname": "Nowakowski",
             "count": 444,
             "date": "11.02.19"
         },
@@ -27,7 +27,7 @@ messagesApp.controller('messagesCtrl', function($scope, $http) {
         },
         {
             "name": "Daniel",
-            "lastname": "Wyspiański",
+            "lastname": "Kornacki",
             "count": 345,
             "date": "13.09.19"
         }

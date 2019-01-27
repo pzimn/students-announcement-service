@@ -1,35 +1,25 @@
 chatApp.controller('Shell', function($scope) {
 
     var vm = this;
-    $scope.test = 'siema';
+
     vm.messages = [
         {
-            'username': 'Mariusz',
-            'content': 'Hi!'
+            'username': 'Mariusz Nowakowski',
+            'content': 'Dzień dobry. Piszę w sprawie korepetycji z programowania w Javie. Kiedy możemy się spotkać?'
         },
         {
-            'username': 'Piotr',
-            'content': 'Hello!'
+            'username': 'Ja',
+            'content': 'Dzień dobry. Możemy spotykać się w każdą sobotę po godzinie 15. Czy pasuje Panu taki układ?'
         },
         {
-            'username': 'Mariusz',
-            'content': 'Książki!'
+            'username': 'Mariusz Nowakowski',
+            'content': 'Tak, pasuje mi idealnie. Proszę o dalszy kontakt pod nr 609 598 345. Pozdrawiam'
         },
         {
-            'username': 'Piotr',
-            'content': 'ooo!'
-        },
-        {
-            'username': 'Mariusz',
-            'content': 'jutro przyjde!'
-        },
-        {
-            'username': 'Piotr',
-            'content': 'bćbarośćbad o długa wiadomość!'
+            'username': 'Ja',
+            'content': 'W takim razie odezwę się na podany numer w Piątek po południu w celu umówienia dokładnej godziny. Pozdrawiam'
         }
     ];
-
-    vm.username = 'Marcin';
 
     vm.sendMessage = function(message, username) {
         if(message && message !== '' && username) {

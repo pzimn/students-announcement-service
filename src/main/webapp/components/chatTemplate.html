@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="card-body msg-container-base" ng-style="vm.panelStyle">
-                <div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">
+                <div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = "napis">
                     <div class="col-lg-12 col-12">
                         <div class="chat-msg" ng-class="{&apos;chat-msg-sent&apos;: selfAuthored, &apos;chat-msg-recieved&apos;: !selfAuthored}">
                             <img ng-if="message.imageUrl"
