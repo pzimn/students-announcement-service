@@ -1,30 +1,42 @@
 package com.student.service.web.model;
 
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
-//@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
-@EntityListeners(AuditingEntityListener.class)
-public class User implements Serializable {
-    @Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq")
+public class User {
+	
+	public static final String ROLE_USER = "ROLE_USER";
+	public static final String ROLE_ADMIN = "ROLE_ADMIN";
+	public static final String ROLE_MODERATOR = "ROLE_MODERATOR";
+	public static final String PASSWORD_PATTERN = "((\\S){6,15})";
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int id;
+    private Integer id;
 
-    @NotBlank
+    public Integer getId() {
+		return id;
+	}
+
+	@NotBlank
     @Column
     private String email;
 
     @NotBlank
-    @Column
-    private String name;
+    @Column(name="name")
+    private String username;
 
     @NotBlank
     @Column
@@ -43,122 +55,104 @@ public class User implements Serializable {
     private int schoolId;
 
     @Column
+    @NotNull
     private String department;
 
     @Column
+    @NotNull
     private String specialization;
 
     @Column(name = "rate_avg")
-    private BigDecimal rateAvg;
-
-    public User(String email, String name, String lastname, String password, String education, int schoolId, String department, String specialization, BigDecimal rateAvg) {
-        this.email = email;
-        this.name = name;
-        this.last_name = lastname;
-        this.password = password;
-        this.education = education;
-        this.schoolId = schoolId;
-        this.department = department;
-        this.specialization = specialization;
-        this.rateAvg = rateAvg;
-    }
+    private double rateAvg;
+    
+    @Column
+	private String role = ROLE_USER;
 
     public User() {
     }
 
-    public int getId() {
-        return id;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getLastname() {
-        return last_name;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setLastname(String lastname) {
-        this.last_name = lastname;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getLast_name() {
+		return last_name;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getEducation() {
+		return education;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setEducation(String education) {
+		this.education = education;
+	}
 
-    public String getEducation() {
-        return education;
-    }
+	public int getSchoolId() {
+		return schoolId;
+	}
 
-    public void setEducation(String education) {
-        this.education = education;
-    }
+	public void setSchoolId(int schoolId) {
+		this.schoolId = schoolId;
+	}
 
-    public int getSchoolId() {
-        return schoolId;
-    }
+	public String getDepartment() {
+		return department;
+	}
 
-    public void setSchoolId(int schoolId) {
-        this.schoolId = schoolId;
-    }
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 
-    public String getDepartment() {
-        return department;
-    }
+	public String getSpecialization() {
+		return specialization;
+	}
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
 
-    public String getSpecialization() {
-        return specialization;
-    }
+	public double getRateAvg() {
+		return rateAvg;
+	}
 
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
+	public void setRateAvg(double rateAvg) {
+		this.rateAvg = rateAvg;
+	}
 
-    public BigDecimal getRateAvg() {
-        return rateAvg;
-    }
+	public String getRole() {
+		return role;
+	}
 
-    public void setRateAvg(BigDecimal rateAvg) {
-        this.rateAvg = rateAvg;
-    }
+	public void setRole(String role) {
+		this.role = role;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", lastname='" + last_name + '\'' +
-                ", password='" + password + '\'' +
-                ", education='" + education + '\'' +
-                ", schoolId=" + schoolId +
-                ", department='" + department + '\'' +
-                ", specialization='" + specialization + '\'' +
-                ", rateAvg=" + rateAvg +
-                '}';
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 }

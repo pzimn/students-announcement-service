@@ -8,8 +8,6 @@ public interface UserService {
 
     User findOne(Integer id);
 
-    User findByName(String name);
-
     User save(User user);
 
     void update(User user);
@@ -19,4 +17,7 @@ public interface UserService {
     void deleteAll();
 
     List<User> findAll();
+
+    public User findByUsername(String name);
+    public User findByEmail(String email);
 }

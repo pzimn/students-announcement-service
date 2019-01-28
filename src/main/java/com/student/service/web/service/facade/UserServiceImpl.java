@@ -17,14 +17,20 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    public User findByUsername(String name){
+        return userRepository.findByUsername(name);
+    };
+
+    @Override
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
+    };
+
+    @Override
     public User findOne(Integer id) {
         return userRepository.findOne(id);
     }
 
-    @Override
-    public User findByName(String name) {
-        return userRepository.findByName(name);
-    }
 
     @Override
     public User save(User user) {
@@ -51,6 +57,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public boolean userExists(User user) { return userRepository.findByName(user.getName()) != null; }
 
 }
