@@ -1,39 +1,65 @@
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
+
 <head>
-    <script src="/dest/index.min.js"></script>
-    <script src="js/application/app.js"></script>
-    <script src="js/controllers/addController.js"></script>
-    <script src="js/application/data.js"></script>
-    <link rel="stylesheet" href="/dest/styles.min.css">
-    <link rel="stylesheet" href="styles/css/dx.light.css">
-    <link rel="stylesheet" href="/styles/css/custom.css">
+	<script src="/dest/index.min.js"></script>
+	<script src="js/application/app.js"></script>
+	<script src="js/controllers/addController.js"></script>
+	<script src="js/application/data.js"></script>
+	<link rel="stylesheet" href="/dest/styles.min.css">
+	<link rel="stylesheet" href="styles/css/dx.light.css">
+	<link rel="stylesheet" href="/styles/css/custom.css">
+
+	<style>
+		.inputClass{
+			margin-bottom: 10px;
+		}
+		.titleClass{
+			font-weight: bold;
+			font-size: 18px;
+		}
+	</style>
+
 </head>
-<body ng-app="app">
+<body>
+<div ng-app="app">
 <navbar-bootstrap></navbar-bootstrap>
-<div ng-controller="addController" ng-init="setDefaultValues()" style="margin-top: 5%; margin-bottom: auto">
-    <div class="row">
-        <div class="row"></div>
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-1">
-            <span>Tytuł:</span><br>
-            <span>Kategoria:</span><br>
-            <span>Cena:</span><br>
-            <span>Opis:</span><br>
-            <span>{{ error_message }}</span><br>
-        </div>
-        <div class="col-md-3">
-            <input class="form-control" ng-model="addTitle"><br>
-            <button type="button" class="btn btn-primary" ng-click="open()">Wybierz kategorię</button><span>Wybrana kategoria: {{categoryName}}</span><br><br>
-            <input class="form-control" ng-model="addPrice"><br>
-            <textarea class="form-control"  ng-model="addDescription" rows="4" cols="50"></textarea>
-            <br>
-            <button class="btn btn-lg btn-primary" ng-click="addAnnouncement()">Dodaj ogłoszenie</button><br>
-            <h2 style="color: red;">{{categoryId}}</h2>
+
+    <div ng-controller="addController" ng-init="setDefaultValues()" style="margin-top: 5%; margin-bottom: auto">
+        <div class="row">
+
+            <div class="row"></div>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <div class="inputClass">
+					<div class="titleClass">Tytuł:</div>
+					<input class="form-control" ng-model="addTitle"></input>
+				</div>
+                <div class="inputClass">
+					<div class="titleClass">Kategoria:</div>
+					<div style="float: left;"><button style="padding: 5px;" class="btn btn-lg btn-primary" ng-click="open()">Wybierz kategorię</button></div>
+					<div style="clear: both;">Wybrana kategoria: {{categoryName}}</div>
+				</div>
+                <div class="inputClass">
+					<div class="titleClass">Cena:</div>
+					<input class="form-control" ng-model="addPrice"></input>
+				</div>
+                <div class="inputClass">
+					<div class="titleClass">Opis:</div>
+					<textarea class="form-control"  ng-model="addDescription" rows="4" cols="50"></textarea>
+				</div>
+                <div class="inputClass">
+					<button style="padding: 5px;" class="btn btn-lg btn-primary" ng-click="addAnnouncement()">Dodaj ogłoszenie</button>
+					<div class="titleClass">{{ error_message }}</div>
+				</div>
+                <!-- <h2 style="color: red;">{{categoryId}}</h2> -->
+            </div>
         </div>
     </div>
+
 </div>
 </body>
 </html>

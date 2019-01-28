@@ -23,7 +23,7 @@ module.exports = function(grunt) {
                 src: ['src/main/webapp/styles/bootstrap/*.css',
 				'src/main/webapp/styles/css/*.css',
 				'src/main/webapp/styles/css/stylesheet.css',
-				'src/main/webapp/styles/css/dx.common.css',],
+				'src/main/webapp/styles/css/dx.common.css'],
                 dest: 'src/main/webapp/dest/styles/concat.css'
             }
         },

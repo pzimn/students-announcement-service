@@ -1,0 +1,1 @@
+var messagesApp = angular.module("messagesApp", ["ui.bootstrap","ngRoute","dx", 'app']);
