@@ -1,27 +1,30 @@
 package com.student.service.web.controller;
 
-import com.student.service.web.model.User;
-import com.student.service.web.service.facade.api.UserService;
+import java.security.Principal;
+import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.management.relation.Role;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import java.security.Principal;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
+import com.student.service.web.model.Announcement;
+import com.student.service.web.model.User;
+import com.student.service.web.service.facade.api.AnnouncementService;
+import com.student.service.web.service.facade.api.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -31,6 +34,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	AnnouncementService announcementService;
 
 	@GetMapping("/")
 	public String helloWorld(){
@@ -48,6 +54,15 @@ public class UserController {
 				.substring("Basic".length()).trim();
 		return () ->  new String(Base64.getDecoder()
 				.decode(authToken)).split(":")[0];
+	}
+
+	@GetMapping("user/{id}/announcements")
+	public ResponseEntity<?> getAllAnnouncementByUser(@PathVariable int id) {
+		if (userService.findOne(id) == null)
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
+		return new ResponseEntity<List<Announcement>>(announcementService.findAll().stream().filter(user -> user.getUserId() == id)
+				.collect(Collectors.toList()), HttpStatus.ACCEPTED);
 	}
 
 	// Get All Users
